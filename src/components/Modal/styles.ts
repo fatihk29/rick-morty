@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
+    padding: 5,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -23,20 +23,16 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  addModalHeader: {
+    alignSelf: 'flex-end',
+    right: 0,
+  },
   button: {
-    position: 'absolute',
-    left: 5,
-    right: 5,
     width: 50,
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2496F3',
+    backgroundColor: 'red',
   },
   textStyle: {
     color: 'white',
@@ -48,8 +44,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   image: {
-    width: 300,
-    height: 300,
+    width: 250,
+    height: 200,
     borderRadius: 40,
   },
 });

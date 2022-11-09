@@ -1,11 +1,18 @@
 import React, {FC} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
+
+import IconMCI from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import {ICharacterItem} from '../../types';
 import styles from './styles';
 
-const CharacterCard: FC<any> = ({item, onPress}) => {
+interface CharacterCardProps {
+  item: ICharacterItem;
+  onPress: Function;
+}
 
-  // console.log("item", item);
-  
+const CharacterCard: FC<CharacterCardProps> = ({item, onPress}) => {
   return (
     <TouchableOpacity
       testID="CharacterCard"
@@ -17,13 +24,9 @@ const CharacterCard: FC<any> = ({item, onPress}) => {
         <Text>{item.name}</Text>
       </View>
 
-      {/* <Text style={styles.name} numberOfLines={2}>
-        {item.name}
-      </Text>
       <View>
-        <Text>{item.episode}</Text>
-        <Text>{item?.air_date}</Text>
-      </View> */}
+        <Text>{item.gender}</Text>
+      </View>
     </TouchableOpacity>
   );
 };

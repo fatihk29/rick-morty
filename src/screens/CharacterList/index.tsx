@@ -1,10 +1,10 @@
 import React, {FC, useEffect, useCallback, useState} from 'react';
 import {FlatList, Platform} from 'react-native';
 import {useSelector} from 'react-redux';
-// import {getAllCharactersAction} from '../../store/modules/app/actions';
+
+
 import {CharacterCard} from '../../components/CharacterCard';
 import ModalComp from '../../components/Modal';
-
 import {
   characterActions,
   characterSelectors,

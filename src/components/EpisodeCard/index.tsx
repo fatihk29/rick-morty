@@ -1,9 +1,15 @@
 import React, {FC} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 
+import {IEpisodeCard} from '../../types';
 import styles from './styles';
 
-const EpisodeCard: FC<any> = ({item, onPress}) => {
+interface EpisodeCardProps {
+  item: IEpisodeCard;
+  onPress: Function;
+}
+
+const EpisodeCard: FC<EpisodeCardProps> = ({item, onPress}) => {
   return (
     <TouchableOpacity
       testID="CharacterCard"

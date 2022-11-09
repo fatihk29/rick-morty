@@ -1,8 +1,20 @@
 import React, {FC} from 'react';
-import {View, Text, Modal, Pressable, Image} from 'react-native';
+import {View, Text, Modal, Image, FlatList} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {ICharacterItem} from '../../types';
 import styles from './styles';
 
-const ModalComp: FC<any> = ({modalVisible, choosen, setModalVisible}) => {
+interface ModalCompProps {
+  modalVisible: boolean;
+  choosen: ICharacterItem;
+  setModalVisible: Function;
+}
+
+const ModalComp: FC<ModalCompProps> = ({
+  modalVisible,
+  choosen,
+  setModalVisible,
+}) => {
   return (
     <Modal
       animationType="slide"
@@ -13,11 +25,14 @@ const ModalComp: FC<any> = ({modalVisible, choosen, setModalVisible}) => {
       }}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Pressable
-            style={[styles.button, styles.buttonClose]}
-            onPress={() => setModalVisible((prev: any) => !prev)}>
-            <Text style={styles.textStyle}>X</Text>
-          </Pressable>
+          <View style={styles.addModalHeader}>
+            <TouchableOpacity
+              style={styles.button}
+              hitSlop={{top: 10, bottom: 10, left: 10, right: 10}}
+              onPress={() => setModalVisible((prev: any) => !prev)}>
+              <Text style={{textAlign: 'center', color: 'white'}}>X</Text>
+            </TouchableOpacity>
+          </View>
           <View>
             <Text style={styles.modalText}>{choosen?.name}</Text>
             <Image source={{uri: choosen.image}} style={styles.image} />
@@ -34,7 +49,7 @@ const ModalComp: FC<any> = ({modalVisible, choosen, setModalVisible}) => {
             </Text>
             <Text style={styles.modalText}>
               {'Created Date:  '}
-              {choosen?.created?.toLocaleString('en-US')}
+              {choosen?.created?.toLocaleString()}
             </Text>
           </View>
         </View>

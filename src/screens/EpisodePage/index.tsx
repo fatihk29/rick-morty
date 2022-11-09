@@ -2,13 +2,13 @@ import React, {FC, useEffect, useCallback, useRef} from 'react';
 import {FlatList, Platform} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-// import {searchUsersAction} from '../../store/modules/app/actions';
+
+
 import {EpisodeCard} from '../../components/EpisodeCard';
 import {
   characterActions,
   characterSelectors,
 } from '../../store/slices/productSlice';
-
 import store from '../../store';
 import styles from './styles';
 
@@ -28,7 +28,7 @@ const EpisodePage: FC<any> = () => {
 
   const data = useSelector(characterSelectors.episode);
 
-  console.log("data", data?.data?.results);
+  // console.log("data", data?.data?.results);
   
 
   const onPressCharacter = (character: any) => {

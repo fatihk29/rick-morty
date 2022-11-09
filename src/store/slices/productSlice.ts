@@ -3,7 +3,7 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {
   getCharacterListAPI,
   getEpisodeListAPI,
-  getHotDeals,
+  getEpisodeListByIdAPI,
 } from '../../services/productApi';
 
 export interface Resource<T> {
@@ -22,18 +22,18 @@ export function emptyResource<T>() {
 }
 
 interface IProduct {
-  products: Resource<any>;
-  productTimings: Resource<any>;
-  hotdeals: Resource<any>;
+  character: Resource<any>;
+  episode: Resource<any>;
+  episodeById: Resource<any>;
 }
 
 const initialState: IProduct = {
-  products: emptyResource(),
-  productTimings: emptyResource(),
-  hotdeals: emptyResource(),
+  character: emptyResource(),
+  episode: emptyResource(),
+  episodeById: emptyResource(),
 };
 
-const getCharacterListAT = createAsyncThunk('ecom/products', async (_, thunkAPI) => {
+const getCharacterListAT = createAsyncThunk('async/character', async (_, thunkAPI) => {
   // console.log('burda :>> ');
   try {
     const response = await getCharacterListAPI();
@@ -49,7 +49,7 @@ const getCharacterListAT = createAsyncThunk('ecom/products', async (_, thunkAPI)
 });
 
 const getEpisodeListAT = createAsyncThunk(
-  'ecom/productTimings',
+  'async/episode',
   async (_, thunkAPI) => {
     try {
       const response = await getEpisodeListAPI();
@@ -64,9 +64,11 @@ const getEpisodeListAT = createAsyncThunk(
   },
 );
 
-const getHotDealsAT = createAsyncThunk('ecom/hotdeals', async (_, thunkAPI) => {
+const getEpisodeListByIdAT = createAsyncThunk('async/episodeById', async (val, thunkAPI) => {
+  console.log("val", val);
+  
   try {
-    const response = await getHotDeals();
+    const response = await getEpisodeListByIdAPI(val);
     if (response) {
       return response;
     } else {
@@ -82,69 +84,70 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // => products start
+    // => character start
     builder.addCase(getCharacterListAT.pending, (state, _) => {
-      state.products.pending = true;
-      state.products.data = null;
-      state.products.err = null;
+      state.character.pending = true;
+      state.character.data = null;
+      state.character.err = null;
     });
     builder.addCase(getCharacterListAT.fulfilled, (state, action) => {
-      state.products.data = action.payload;
-      state.products.err = null;
-      state.products.pending = false;
+      state.character.data = action.payload;
+      state.character.err = null;
+      state.character.pending = false;
     });
     builder.addCase(getCharacterListAT.rejected, (state, action) => {
-      state.products.err = action.error.message;
-      state.products.data = null;
-      state.products.pending = false;
+      state.character.err = action.error.message;
+      state.character.data = null;
+      state.character.pending = false;
     });
-    // <= products end
-    // => productTimings start
+    // <= character end
+    // => episode list start
     builder.addCase(getEpisodeListAT.pending, (state, _) => {
-      state.productTimings.pending = true;
-      state.productTimings.data = null;
-      state.productTimings.err = null;
+      state.episode.pending = true;
+      state.episode.data = null;
+      state.episode.err = null;
     });
     builder.addCase(getEpisodeListAT.fulfilled, (state, action) => {
-      state.productTimings.data = action.payload;
-      state.productTimings.err = null;
-      state.productTimings.pending = false;
+      state.episode.data = action.payload;
+      state.episode.err = null;
+      state.episode.pending = false;
     });
     builder.addCase(getEpisodeListAT.rejected, (state, action) => {
-      state.productTimings.err = action.error.message;
-      state.productTimings.data = null;
-      state.productTimings.pending = false;
+      state.episode.err = action.error.message;
+      state.episode.data = null;
+      state.episode.pending = false;
     });
     // <= productTimings end
-    // => hotdeals start
-    builder.addCase(getHotDealsAT.pending, (state, _) => {
-      state.hotdeals.pending = true;
-      state.hotdeals.data = null;
-      state.hotdeals.err = null;
+    // => episodeById start
+    builder.addCase(getEpisodeListByIdAT.pending, (state, _) => {
+      state.episodeById.pending = true;
+      state.episodeById.data = null;
+      state.episodeById.err = null;
     });
-    builder.addCase(getHotDealsAT.fulfilled, (state, action) => {
-      state.hotdeals.data = action.payload;
-      state.hotdeals.err = null;
-      state.hotdeals.pending = false;
+    builder.addCase(getEpisodeListByIdAT.fulfilled, (state, action) => {
+      state.episodeById.data = action.payload;
+      state.episodeById.err = null;
+      state.episodeById.pending = false;
     });
-    builder.addCase(getHotDealsAT.rejected, (state, action) => {
-      state.hotdeals.err = action.error.message;
-      state.hotdeals.data = null;
-      state.hotdeals.pending = false;
+    builder.addCase(getEpisodeListByIdAT.rejected, (state, action) => {
+      state.episodeById.err = action.error.message;
+      state.episodeById.data = null;
+      state.episodeById.pending = false;
     });
-    // <= hotdeals end
+    // <= episodeById end
   },
 });
 
 export const characterActions = {
   getCharacterListAT,
   getEpisodeListAT,
-  getHotDealsAT,
+  getEpisodeListByIdAT,
 };
 
 export const characterSelectors = {
-  character: (state: any) => state.appReducer.products,
-  episode: (state: any) => state.appReducer.productTimings,
+  character: (state: any) => state.appReducer.character,
+  episode: (state: any) => state.appReducer.episode,
+  episodeById: (state: any) => state.appReducer.episodeById,
 };
 
 export default productsSlice.reducer;
