@@ -8,7 +8,7 @@ const WorkExperienceBox: FC<any> = () => {
   const [number, onChangeNumber] = useState('');
 
   return (
-    <View style={{flex: 1, flexDirection: 'column'}}>
+    <View style={styles.container}>
       <TextInput
         style={styles.workExperience}
         onChangeText={onChangeNumber}

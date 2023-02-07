@@ -4,7 +4,7 @@ import {ReactNativeZoomableView} from '@openspacelabs/react-native-zoomable-view
 
 // project imports
 import styles from './styles';
-import EditCV from '../../components/EditCV';
+import TemplateCV1 from '../../components/TemplateCV1';
 
 const CreateTemplate: FC<any> = () => {
   return (
@@ -21,7 +21,7 @@ const CreateTemplate: FC<any> = () => {
               uri: 'https://firebasestorage.googleapis.com/v0/b/react-native-ui-kits.appspot.com/o/assets%2Fzurich1.jpg?alt=media&token=8c900be1-b6d6-427d-9739-1f637d8369e6',
             }}
           /> */}
-          <EditCV />
+          <TemplateCV1 />
         </ReactNativeZoomableView>
       </View>
     </View>

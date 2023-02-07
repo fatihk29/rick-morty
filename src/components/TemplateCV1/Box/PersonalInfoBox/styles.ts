@@ -1,15 +1,20 @@
-import {Dimensions, StyleSheet} from 'react-native';
-
-const {width, height} = Dimensions.get('window');
+import {StyleSheet} from 'react-native';
+const SIZE = 70;
 
 const styles = StyleSheet.create({
+  container: {},
+  image: {
+    width: SIZE,
+    height: SIZE,
+    resizeMode: 'contain',
+    borderRadius: SIZE / 2,
+  },
   summaryTitle: {
     height: 30,
     width: 90,
     margin: 6,
     borderWidth: 0,
     padding: 6,
-    backgroundColor: '#ccc',
   },
   summaryText: {
     height: 30,
@@ -40,31 +45,6 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     padding: 6,
     // backgroundColor: '#ccc',
-  },
-
-  yourName: {
-    height: 30,
-    width: 230,
-    margin: 6,
-    borderWidth: 0,
-    padding: 6,
-    backgroundColor: '#ccc',
-  },
-  yourProfession: {
-    height: 30,
-    width: 230,
-    margin: 6,
-    borderWidth: 0,
-    padding: 6,
-    backgroundColor: '#ccc',
-  },
-  workExperience: {
-    height: 30,
-    width: 230,
-    margin: 6,
-    borderWidth: 0,
-    padding: 6,
-    backgroundColor: '#ccc',
   },
 });
 
