@@ -16,14 +16,3 @@ export interface LocationOrOrigin {
   name: string;
   url: string;
 }
-
-
-export interface IEpisodeCard {
-  air_date: string;
-  characters?: (string)[] | null;
-  created: string;
-  episode: string;
-  id: number;
-  name: string;
-  url: string;
-}
