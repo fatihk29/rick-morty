@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {View} from 'react-native';
+import {View, KeyboardAvoidingView} from 'react-native';
 
 // project imports
 import EducationBox from './Box/EducationBox';
@@ -11,17 +11,19 @@ import styles from './styles';
 
 const EditCV: FC<any> = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.personalInfoBox}>
-        <PersonalInfoBox />
+    <KeyboardAvoidingView>
+      <View style={styles.container}>
+        <View style={styles.personalInfoBox}>
+          <PersonalInfoBox />
+        </View>
+        <View style={styles.experienceBox}>
+          <PersonNameBox />
+          <WorkExperienceBox />
+          <EducationBox />
+          <SkillBox />
+        </View>
       </View>
-      <View style={styles.experienceBox}>
-        <PersonNameBox />
-        <WorkExperienceBox />
-        <EducationBox />
-        <SkillBox />
-      </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
