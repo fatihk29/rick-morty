@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {
   Button,
   Icon,
@@ -18,6 +18,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 // project imports
 import style from './style';
 import {APP_ROUTER} from '../../navigation/app-router';
+import DeleteCVModal from '../../screens/Modal/DeleteCVModal';
 
 interface CVItemProps {
   item: any;
@@ -25,6 +26,8 @@ interface CVItemProps {
 }
 
 const CVItem: FC<CVItemProps> = ({item, navigation}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Pressable alignItems="center" style={style.itemContainer}>
       <Box
@@ -40,13 +43,15 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
         _light={{
           backgroundColor: 'gray.50',
         }}>
-        <Box>
+        <Box justifyContent="flex-start">
           <AspectRatio w="100%" ratio={16 / 9}>
             <Image
               source={{
                 uri: 'https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg',
               }}
               alt="image"
+              // size={160}
+              borderRadius={10}
             />
           </AspectRatio>
           <Pressable
@@ -68,17 +73,13 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
               _text={{
                 color: 'warmGray.50',
                 fontWeight: '700',
-                fontSize: 'xs',
+                fontSize: 'md',
               }}>
               Edit
             </Center>
           </Pressable>
           <Pressable
-            onPress={() => {
-              navigation.navigate(APP_ROUTER.SCREEN.createcv.path, {
-                item,
-              });
-            }}
+            onPress={() => setIsOpen((prev: boolean) => !prev)}
             position="absolute"
             top="0"
             left="0"
@@ -87,7 +88,7 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
             _dark={{
               bg: 'violet.400',
             }}>
-            <Icon as={MaterialIcons} name="delete" size={22} color="#fff" />
+            <Icon as={MaterialIcons} name="delete" size={22} color="#2F4F4F" />
           </Pressable>
         </Box>
         <Stack p="4" space={3}>
@@ -96,7 +97,7 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
               {item.name}
             </Heading>
             <Text
-              fontSize="xs"
+              fontSize="md"
               _light={{
                 color: 'violet.500',
               }}
@@ -130,6 +131,9 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
           </HStack>
         </Stack>
       </Box>
+      {/* MODALS => */}
+      {isOpen && <DeleteCVModal setIsOpen={setIsOpen} />}
+      {/* <= MODALS */}
     </Pressable>
   );
 };

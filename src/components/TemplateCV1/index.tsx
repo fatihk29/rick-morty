@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
-import {View, KeyboardAvoidingView} from 'react-native';
-// import {useNavigationParam} from '@react-navigation/native';
+import {View, Dimensions} from 'react-native';
+import {ScrollView} from 'native-base';
 
 // project imports
 import EducationBox from './Box/EducationBox';
@@ -10,9 +10,11 @@ import SkillBox from './Box/SkillBox';
 import WorkExperienceBox from './Box/WorkExperienceBox';
 import styles from './styles';
 
+const {width, height} = Dimensions.get('window');
+
 const EditCV: FC<any> = () => {
   return (
-    <KeyboardAvoidingView>
+    <ScrollView w={[width, height]}>
       <View style={styles.container}>
         <View style={styles.personalInfoBox}>
           <PersonalInfoBox />
@@ -24,7 +26,7 @@ const EditCV: FC<any> = () => {
           <SkillBox />
         </View>
       </View>
-    </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 

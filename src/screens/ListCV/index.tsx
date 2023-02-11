@@ -1,11 +1,13 @@
 import React, {FC} from 'react';
 import {SafeAreaView, FlatList} from 'react-native';
+import {Center, Text} from 'native-base';
 
 // project imports
 import CVItem from '../../components/CVItem';
+import EmptyCVItem from '../../components/EmptyCVItem';
 import styles from './styles';
 
-const DATA = [
+const data = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
     name: 'First Item',
@@ -29,13 +31,24 @@ const DATA = [
 const ListCV: FC<any> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        data={DATA}
-        renderItem={({item}) => {
-          return <CVItem item={item} navigation={navigation} />;
-        }}
-        keyExtractor={item => item.id}
-      />
+      {data.length > 0 ? (
+        <FlatList
+          data={data}
+          renderItem={({item}) => {
+            return <CVItem item={item} navigation={navigation} />;
+          }}
+          keyExtractor={item => item.id}
+          ListHeaderComponent={() => {
+            return (
+              <Center>
+                <Text height={5}>Total {data?.length} CV</Text>
+              </Center>
+            );
+          }}
+        />
+      ) : (
+        <EmptyCVItem navigation={navigation} />
+      )}
     </SafeAreaView>
   );
 };

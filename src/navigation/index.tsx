@@ -1,10 +1,10 @@
-import React from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import React, {FC} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import MCI from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon, Box, Text, HStack, Pressable, Center} from 'native-base';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // project imports
 import CreateTemplate from '../screens/CreateTemplate';
@@ -17,23 +17,13 @@ const Stack = createStackNavigator();
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator tabBar={props => <MyTabBar {...props} />}>
       <Tab.Screen
         name={APP_ROUTER.SCREEN.listcv.path}
         component={ListCV}
         options={() => ({
-          tabBarLabel: APP_ROUTER.SCREEN.listcv.tabBarLabel,
-          headerLeft: () => <View />,
-          headerTitle: () => <HeaderMidTitle title={'ListCV'} />,
-          tabBarButton: props => (
-            <TouchableOpacity {...props}>
-              <MCI
-                name="format-list-bulleted-square"
-                size={30}
-                color="#6495ED"
-              />
-              <Text>List</Text>
-            </TouchableOpacity>
+          headerTitle: () => (
+            <HeaderMidTitle title={APP_ROUTER.SCREEN.listcv.tabBarLabel} />
           ),
         })}
       />
@@ -41,38 +31,68 @@ const TabNavigator = () => {
         name={APP_ROUTER.SCREEN.createcv.path}
         component={CreateTemplate}
         options={() => ({
-          tabBarLabel: APP_ROUTER.SCREEN.createcv.tabBarLabel,
-          headerLeft: () => <View />,
-          headerTitle: () => <HeaderMidTitle title={'Create CV'} />,
+          headerTitle: () => (
+            <HeaderMidTitle title={APP_ROUTER.SCREEN.createcv.tabBarLabel} />
+          ),
           headerRight: () => <HeaderRightTitle icon={'settings'} />,
           tabBarIcon: () => (
             <MaterialIcons name="create" size={30} color="#6495ED" />
           ),
-          tabBarButton: props => (
-            <TouchableOpacity {...props}>
-              <MaterialIcons name="create" size={30} color="#6495ED" />
-              <Text>Create CV</Text>
-            </TouchableOpacity>
-          ),
         })}
       />
-      {/* <Tab.Screen
-        name="Create CV1"
-        component={CreateTemplate}
-        options={() => ({
-          tabBarLabel: 'Create CV',
-          headerLeft: () => <View />,
-          headerTitle: () => <HeaderMidTitle title={'Create CV'} />,
-          headerRight: () => <HeaderRightTitle icon={'settings'} />,
-          tabBarButton: props => (
-            <TouchableOpacity {...props}>
-              <MaterialIcons name="person" size={30} color="#6495ED" />
-              <Text>Profile</Text>
-            </TouchableOpacity>
-          ),
-        })}
-      /> */}
     </Tab.Navigator>
+  );
+};
+
+const MyTabBar: FC<any> = ({navigation}) => {
+  const [selected, setSelected] = React.useState(1);
+  return (
+    <Box bg="white" safeAreaTop width="100%" alignSelf="center">
+      <HStack bg="indigo.600" alignItems="center" safeAreaBottom shadow={6}>
+        <Pressable
+          opacity={selected === 0 ? 1 : 0.5}
+          py="3"
+          flex={1}
+          onPress={() => {
+            setSelected(0);
+            navigation.navigate(APP_ROUTER.SCREEN.listcv.path);
+          }}>
+          <Center>
+            <Icon
+              mb="1"
+              as={
+                <MaterialCommunityIcons
+                  name={selected === 0 ? 'home' : 'home-outline'}
+                />
+              }
+              color="white"
+              size="md"
+            />
+            <Text fontSize="12">{APP_ROUTER.SCREEN.listcv.tabBarLabel}</Text>
+          </Center>
+        </Pressable>
+        <Pressable
+          opacity={selected === 1 ? 1 : 0.5}
+          py="2"
+          flex={1}
+          onPress={() => {
+            setSelected(1);
+            navigation.navigate(APP_ROUTER.SCREEN.createcv.path);
+          }}>
+          <Center>
+            <Icon
+              mb="1"
+              as={<MaterialIcons name="create" />}
+              color="white"
+              size="md"
+            />
+            <Text color="white" fontSize="12">
+              {APP_ROUTER.SCREEN.createcv.tabBarLabel}
+            </Text>
+          </Center>
+        </Pressable>
+      </HStack>
+    </Box>
   );
 };
 
