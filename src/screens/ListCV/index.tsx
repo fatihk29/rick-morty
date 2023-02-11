@@ -8,7 +8,7 @@ import styles from './styles';
 const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    name: 'ISIM SOYISIM',
+    name: 'First Item',
     cvTitle: 'react-native developer',
     createdDate: '02/02/2023',
   },

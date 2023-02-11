@@ -10,6 +10,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import CreateTemplate from '../screens/CreateTemplate';
 import ListCV from '../screens/ListCV';
 import {HeaderMidTitle, HeaderRightTitle} from '../components/ScreenHeaders';
+import {APP_ROUTER} from './app-router';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -18,10 +19,10 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="ListCV"
+        name={APP_ROUTER.SCREEN.listcv.path}
         component={ListCV}
         options={() => ({
-          tabBarLabel: 'List CV',
+          tabBarLabel: APP_ROUTER.SCREEN.listcv.tabBarLabel,
           headerLeft: () => <View />,
           headerTitle: () => <HeaderMidTitle title={'ListCV'} />,
           tabBarButton: props => (
@@ -37,10 +38,10 @@ const TabNavigator = () => {
         })}
       />
       <Tab.Screen
-        name="Create CV"
+        name={APP_ROUTER.SCREEN.createcv.path}
         component={CreateTemplate}
         options={() => ({
-          tabBarLabel: 'Create CV',
+          tabBarLabel: APP_ROUTER.SCREEN.createcv.tabBarLabel,
           headerLeft: () => <View />,
           headerTitle: () => <HeaderMidTitle title={'Create CV'} />,
           headerRight: () => <HeaderRightTitle icon={'settings'} />,

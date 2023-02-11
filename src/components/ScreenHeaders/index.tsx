@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {TouchableOpacity, View, Text} from 'react-native';
-// import MCI from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Icon} from 'native-base';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // project imports
@@ -22,7 +22,7 @@ const HeaderRightTitle: FC<any> = ({icon}: any) => {
         console.log('first');
       }}>
       <View style={style.subContainer}>
-        <MaterialIcons name={icon} size={30} color="#6495ED" />
+        <Icon as={MaterialIcons} name={icon} color="#6495ED" />
       </View>
     </TouchableOpacity>
   );
