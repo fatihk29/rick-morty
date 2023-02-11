@@ -12,19 +12,8 @@ const styles = StyleSheet.create({
   animated: {
     borderWidth: 1,
     flexShrink: 1,
-    height: height - 250,
+    height: height - 50,
     width: width - 20,
-  },
-
-  image: {
-    widht: 200,
-    height: 300,
-  },
-
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
   },
 });
 

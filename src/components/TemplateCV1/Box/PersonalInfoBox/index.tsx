@@ -18,7 +18,7 @@ const PersonalInfoBox: FC<any> = () => {
         style={styles.summaryTitle}
         onChangeText={onChangeNumber}
         value={number}
-        placeholder="summary title"
+        placeholder="Summary"
       />
       <TextInput
         style={styles.summaryText}
@@ -31,28 +31,24 @@ const PersonalInfoBox: FC<any> = () => {
         onChangeText={onChangeNumber}
         value={number}
         placeholder="Personal Details"
-        keyboardType="numeric"
       />
       <TextInput
         style={styles.location}
         onChangeText={onChangeNumber}
         value={number}
         placeholder="address"
-        keyboardType="numeric"
       />
       <TextInput
         style={styles.contact}
         onChangeText={onChangeNumber}
         value={number}
         placeholder="Contact"
-        keyboardType="numeric"
       />
       <TextInput
         style={styles.location}
         onChangeText={onChangeNumber}
         value={number}
         placeholder="Enter your email"
-        keyboardType="numeric"
       />
     </View>
   );

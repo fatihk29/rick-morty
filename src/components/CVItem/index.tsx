@@ -13,6 +13,7 @@ import {
   Center,
 } from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // project imports
 import style from './style';
@@ -71,6 +72,22 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
               }}>
               Edit
             </Center>
+          </Pressable>
+          <Pressable
+            onPress={() => {
+              navigation.navigate(APP_ROUTER.SCREEN.createcv.path, {
+                item,
+              });
+            }}
+            position="absolute"
+            top="0"
+            left="0"
+            px="2"
+            py="2"
+            _dark={{
+              bg: 'violet.400',
+            }}>
+            <Icon as={MaterialIcons} name="delete" size={22} color="#fff" />
           </Pressable>
         </Box>
         <Stack p="4" space={3}>

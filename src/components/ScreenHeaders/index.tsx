@@ -22,7 +22,7 @@ const HeaderRightTitle: FC<any> = ({icon}: any) => {
         console.log('first');
       }}>
       <View style={style.subContainer}>
-        <Icon as={MaterialIcons} name={icon} color="#6495ED" />
+        <Icon as={MaterialIcons} name={icon} color="#6495ED" size={28} />
       </View>
     </TouchableOpacity>
   );

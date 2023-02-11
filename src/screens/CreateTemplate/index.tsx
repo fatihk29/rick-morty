@@ -9,7 +9,7 @@ import TemplateCV1 from '../../components/TemplateCV1';
 const CreateTemplate: FC<any> = ({route}) => {
   useEffect(() => {
     if (route) {
-      console.log('route', route?.params?.item);
+      // console.log('route', route?.params?.item);
     }
   }, [route]);
 
