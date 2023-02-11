@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, TouchableOpacity, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -20,12 +20,19 @@ const TabNavigator = () => {
       <Tab.Screen
         name="ListCV"
         component={ListCV}
-        // options={{headerShown: false}}
         options={() => ({
+          tabBarLabel: 'List CV',
           headerLeft: () => <View />,
           headerTitle: () => <HeaderMidTitle title={'ListCV'} />,
-          tabBarIcon: () => (
-            <MCI name="format-list-bulleted-square" size={30} color="#6495ED" />
+          tabBarButton: props => (
+            <TouchableOpacity {...props}>
+              <MCI
+                name="format-list-bulleted-square"
+                size={30}
+                color="#6495ED"
+              />
+              <Text>List</Text>
+            </TouchableOpacity>
           ),
         })}
       />
@@ -33,14 +40,37 @@ const TabNavigator = () => {
         name="Create CV"
         component={CreateTemplate}
         options={() => ({
+          tabBarLabel: 'Create CV',
           headerLeft: () => <View />,
           headerTitle: () => <HeaderMidTitle title={'Create CV'} />,
           headerRight: () => <HeaderRightTitle icon={'settings'} />,
           tabBarIcon: () => (
             <MaterialIcons name="create" size={30} color="#6495ED" />
           ),
+          tabBarButton: props => (
+            <TouchableOpacity {...props}>
+              <MaterialIcons name="create" size={30} color="#6495ED" />
+              <Text>Create CV</Text>
+            </TouchableOpacity>
+          ),
         })}
       />
+      {/* <Tab.Screen
+        name="Create CV1"
+        component={CreateTemplate}
+        options={() => ({
+          tabBarLabel: 'Create CV',
+          headerLeft: () => <View />,
+          headerTitle: () => <HeaderMidTitle title={'Create CV'} />,
+          headerRight: () => <HeaderRightTitle icon={'settings'} />,
+          tabBarButton: props => (
+            <TouchableOpacity {...props}>
+              <MaterialIcons name="person" size={30} color="#6495ED" />
+              <Text>Profile</Text>
+            </TouchableOpacity>
+          ),
+        })}
+      /> */}
     </Tab.Navigator>
   );
 };

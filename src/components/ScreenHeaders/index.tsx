@@ -16,7 +16,11 @@ const HeaderMidTitle: FC<any> = ({title}: any) => {
 
 const HeaderRightTitle: FC<any> = ({icon}: any) => {
   return (
-    <TouchableOpacity style={style.leftHeader}>
+    <TouchableOpacity
+      style={style.leftHeader}
+      onPress={() => {
+        console.log('first');
+      }}>
       <View style={style.subContainer}>
         <MaterialIcons name={icon} size={30} color="#6495ED" />
       </View>

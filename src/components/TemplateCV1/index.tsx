@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {View, KeyboardAvoidingView} from 'react-native';
+// import {useNavigationParam} from '@react-navigation/native';
 
 // project imports
 import EducationBox from './Box/EducationBox';

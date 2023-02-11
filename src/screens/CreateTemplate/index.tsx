@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {View} from 'react-native';
 import {ReactNativeZoomableView} from '@openspacelabs/react-native-zoomable-view';
 
@@ -6,7 +6,13 @@ import {ReactNativeZoomableView} from '@openspacelabs/react-native-zoomable-view
 import styles from './styles';
 import TemplateCV1 from '../../components/TemplateCV1';
 
-const CreateTemplate: FC<any> = () => {
+const CreateTemplate: FC<any> = ({route}) => {
+  useEffect(() => {
+    if (route) {
+      console.log('route', route.params.item);
+    }
+  }, [route]);
+
   return (
     <View style={styles.container}>
       <View style={styles.animated}>
@@ -15,12 +21,6 @@ const CreateTemplate: FC<any> = () => {
           contentWidth={600}
           contentHeight={800}
           style>
-          {/* <Image
-            style={{width: '100%', height: '100%', resizeMode: 'contain'}}
-            source={{
-              uri: 'https://firebasestorage.googleapis.com/v0/b/react-native-ui-kits.appspot.com/o/assets%2Fzurich1.jpg?alt=media&token=8c900be1-b6d6-427d-9739-1f637d8369e6',
-            }}
-          /> */}
           <TemplateCV1 />
         </ReactNativeZoomableView>
       </View>
