@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {View, Text, Modal, Image, FlatList} from 'react-native';
+import {View, Text, Modal, Image} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {ICharacterItem} from '../../types';
 import styles from './styles';

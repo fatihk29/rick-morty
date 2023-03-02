@@ -45,7 +45,7 @@ const TabNavigator = () => {
 };
 
 const MyTabBar: FC<any> = ({navigation}) => {
-  const [selected, setSelected] = React.useState(1);
+  const [selected, setSelected] = React.useState(0);
   return (
     <Box bg="white" safeAreaTop width="100%" alignSelf="center">
       <HStack bg="indigo.600" alignItems="center" safeAreaBottom shadow={6}>
@@ -68,7 +68,9 @@ const MyTabBar: FC<any> = ({navigation}) => {
               color="white"
               size="md"
             />
-            <Text fontSize="12">{APP_ROUTER.SCREEN.listcv.tabBarLabel}</Text>
+            <Text color="white" fontSize="12">
+              {APP_ROUTER.SCREEN.listcv.tabBarLabel}
+            </Text>
           </Center>
         </Pressable>
         <Pressable

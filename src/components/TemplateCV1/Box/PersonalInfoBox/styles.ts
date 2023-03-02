@@ -1,8 +1,10 @@
 import {StyleSheet} from 'react-native';
 const SIZE = 70;
 
+const fontSizeSM = 6;
+const fontSizeMD = 9;
+
 const styles = StyleSheet.create({
-  container: {},
   image: {
     width: SIZE,
     height: SIZE,
@@ -12,39 +14,60 @@ const styles = StyleSheet.create({
   summaryTitle: {
     height: 30,
     width: 90,
-    margin: 6,
     borderWidth: 0,
-    padding: 6,
+    fontSize: fontSizeMD,
   },
   summaryText: {
     height: 30,
     width: 90,
-    margin: 6,
     borderWidth: 0,
-    padding: 6,
+    fontSize: fontSizeSM,
   },
   personalDetails: {
     height: 30,
     width: 90,
-    margin: 6,
+    // margin: 6,
     borderWidth: 0,
-    padding: 6,
+    fontSize: fontSizeMD - 1,
   },
-  location: {
+  locationTitle: {
+    height: 30,
+    width: 90,
+    marginHorizontal: 6,
+    borderWidth: 0,
+    fontSize: fontSizeMD,
+  },
+  locationText: {
     height: 30,
     width: 100,
     margin: 6,
     borderWidth: 0,
     padding: 6,
-    // backgroundColor: '#ccc',
+    fontSize: fontSizeSM,
   },
-  contact: {
+  contactTitle: {
     height: 30,
     width: 100,
     margin: 6,
     borderWidth: 0,
     padding: 6,
-    // backgroundColor: '#ccc',
+    fontSize: fontSizeSM,
+  },
+  emailText: {
+    height: 30,
+    width: 100,
+    margin: 6,
+    borderWidth: 0,
+    padding: 6,
+    fontSize: fontSizeSM,
+  },
+  phoneText: {
+    height: 30,
+    width: 10,
+    borderWidth: 0,
+    paddingLeft: 0,
+    fontSize: fontSizeSM,
+    // backgroundColor: 'yellow',
   },
 });
 

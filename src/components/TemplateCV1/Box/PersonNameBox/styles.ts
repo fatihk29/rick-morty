@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     margin: 6,
     borderWidth: 0,
     padding: 6,
-    backgroundColor: '#ccc',
+    // backgroundColor: 'blue',
   },
   yourProfession: {
     height: 30,
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     margin: 6,
     borderWidth: 0,
     padding: 6,
-    backgroundColor: '#ccc',
+    // backgroundColor: '#ccc',
   },
 });
 

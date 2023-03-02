@@ -6,6 +6,7 @@ import {Center, Text} from 'native-base';
 import CVItem from '../../components/CVItem';
 import EmptyCVItem from '../../components/EmptyCVItem';
 import styles from './styles';
+// import CreatePDF from '../../components/makepdf/createpdf';
 
 const data = [
   {
@@ -31,6 +32,7 @@ const data = [
 const ListCV: FC<any> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
+      {/* <CreatePDF /> */}
       {data.length > 0 ? (
         <FlatList
           data={data}
