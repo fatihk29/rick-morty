@@ -8,5 +8,9 @@ export const APP_ROUTER = {
       path: 'createcv',
       tabBarLabel: 'Create CV',
     },
+    seepdf: {
+      path: 'seepdf',
+      tabBarLabel: 'See PDF',
+    },
   },
 };

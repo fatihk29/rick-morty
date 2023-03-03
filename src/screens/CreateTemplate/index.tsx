@@ -6,7 +6,11 @@ import {ReactNativeZoomableView} from '@openspacelabs/react-native-zoomable-view
 import styles from './styles';
 import TemplateCV1 from '../../components/TemplateCV1';
 
-const CreateTemplate: FC<any> = ({route}) => {
+interface CreateTemplateProps {
+  route: any;
+}
+
+const CreateTemplate: FC<CreateTemplateProps> = ({route}) => {
   useEffect(() => {
     if (route) {
       // console.log('route', route?.params?.item);

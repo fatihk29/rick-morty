@@ -2,7 +2,6 @@ import React, {FC, useState} from 'react';
 import {
   Button,
   Icon,
-  AspectRatio,
   Box,
   Text,
   Stack,
@@ -13,16 +12,18 @@ import {
   Center,
 } from 'native-base';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MIcons from 'react-native-vector-icons/MaterialIcons';
+import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {NavigationProp} from '@react-navigation/native';
 
 // project imports
-import style from './style';
 import {APP_ROUTER} from '../../navigation/app-router';
 import DeleteCVModal from '../../screens/Modal/DeleteCVModal';
+import style from './style';
 
 interface CVItemProps {
   item: any;
-  navigation: any;
+  navigation: NavigationProp<any>;
 }
 
 const CVItem: FC<CVItemProps> = ({item, navigation}) => {
@@ -31,7 +32,7 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
   return (
     <Pressable alignItems="center" style={style.itemContainer}>
       <Box
-        maxW="80"
+        maxW="88%"
         rounded="lg"
         overflow="hidden"
         borderColor="coolGray.200"
@@ -44,16 +45,20 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
           backgroundColor: 'gray.50',
         }}>
         <Box justifyContent="flex-start">
-          <AspectRatio w="100%" ratio={16 / 9}>
+          <Box
+            justifyContent="center"
+            // alignSelf="flex-start"
+            style={{backgroundColor: '', margin: 5}}>
             <Image
               source={{
                 uri: 'https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg',
               }}
               alt="image"
-              // size={160}
-              borderRadius={10}
+              size={120}
+              borderRadius={60}
             />
-          </AspectRatio>
+          </Box>
+
           <Pressable
             onPress={() => {
               navigation.navigate(APP_ROUTER.SCREEN.createcv.path, {
@@ -81,14 +86,14 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
           <Pressable
             onPress={() => setIsOpen((prev: boolean) => !prev)}
             position="absolute"
-            top="0"
-            left="0"
+            bottom="0"
+            right="0"
             px="2"
             py="2"
             _dark={{
-              bg: 'violet.400',
+              bg: 'white',
             }}>
-            <Icon as={MaterialIcons} name="delete" size={22} color="#2F4F4F" />
+            <Icon as={MIcons} name="delete" size="6" color="secondary.600" />
           </Pressable>
         </Box>
         <Stack p="4" space={3}>
@@ -109,8 +114,8 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
             </Text>
           </Stack>
           <Text fontWeight="400">
-            Bengaluru (also called Bangalore) is the center of India's high-tech
-            industry. The city is also known for its parks and nightlife.
+            Bangalore is the center of India's high-tech industry. The city is
+            also known for its parks and nightlife.
           </Text>
           <HStack alignItems="center" justifyContent="space-between">
             <Text
@@ -122,13 +127,35 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
               {item.createdDate}
             </Text>
             <Button
-              variant="subtle"
+              _pressed={{backgroundColor: '#fff'}}
+              variant="ghost"
+              style={{
+                marginRight: -14,
+              }}
+              onPress={() => {
+                navigation.navigate(APP_ROUTER.SCREEN.seepdf.path, {
+                  item: 'as',
+                });
+              }}
               endIcon={
-                <Icon as={Ionicons} name="cloud-download-outline" size="sm" />
+                <Icon
+                  as={MCIcons}
+                  name="file-pdf-box"
+                  size="12"
+                  color="tertiary.500"
+                />
               }>
-              Download
+              {/* See */}
             </Button>
           </HStack>
+          <Button
+            _pressed={{backgroundColor: '#fff'}}
+            variant="subtle"
+            endIcon={
+              <Icon as={Ionicons} name="cloud-download-outline" size="6" />
+            }>
+            Download PDF
+          </Button>
         </Stack>
       </Box>
       {/* MODALS => */}

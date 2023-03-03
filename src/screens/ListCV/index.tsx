@@ -29,7 +29,11 @@ const data = [
   },
 ];
 
-const ListCV: FC<any> = ({navigation}) => {
+interface ListCVProps {
+  navigation: any;
+}
+
+const ListCV: FC<ListCVProps> = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       {/* <CreatePDF /> */}

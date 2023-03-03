@@ -6,7 +6,15 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 // project imports
 import style from './styles';
 
-const HeaderMidTitle: FC<any> = ({title}: any) => {
+interface HeaderMidTitleProps {
+  title: any;
+}
+
+interface HeaderRightTitleProps {
+  icon: any;
+}
+
+const HeaderMidTitle: FC<HeaderMidTitleProps> = ({title}: any) => {
   return (
     <View style={style.midHeader}>
       <Text style={style.midHeaderText}>{title}</Text>
@@ -14,7 +22,7 @@ const HeaderMidTitle: FC<any> = ({title}: any) => {
   );
 };
 
-const HeaderRightTitle: FC<any> = ({icon}: any) => {
+const HeaderRightTitle: FC<HeaderRightTitleProps> = ({icon}: any) => {
   return (
     <TouchableOpacity
       style={style.leftHeader}

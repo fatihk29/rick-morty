@@ -21,7 +21,7 @@ const PersonNameBox: FC<any> = () => {
     const data = watch();
     console.log('data :>> ', data);
   };
-  console.log('render');
+  console.log('render in PersonNameBox');
 
   return (
     <View>

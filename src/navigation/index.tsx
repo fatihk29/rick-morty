@@ -7,8 +7,10 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // project imports
+// SCREENS
 import CreateTemplate from '../screens/CreateTemplate';
 import ListCV from '../screens/ListCV';
+import SeePDF from '../screens/SeePDF';
 import {HeaderMidTitle, HeaderRightTitle} from '../components/ScreenHeaders';
 import {APP_ROUTER} from './app-router';
 
@@ -111,6 +113,15 @@ const AppNavigator = () => {
           name="Home"
           component={CreateTemplate}
           options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name={APP_ROUTER.SCREEN.seepdf.path}
+          component={SeePDF}
+          options={() => ({
+            headerTitle: () => (
+              <HeaderMidTitle title={APP_ROUTER.SCREEN.seepdf.tabBarLabel} />
+            ),
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>
