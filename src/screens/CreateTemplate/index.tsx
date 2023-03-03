@@ -1,6 +1,7 @@
 import React, {FC, useEffect} from 'react';
 import {View} from 'react-native';
 import {ReactNativeZoomableView} from '@openspacelabs/react-native-zoomable-view';
+import {useRoute} from '@react-navigation/native';
 
 // project imports
 import styles from './styles';
@@ -16,6 +17,8 @@ const CreateTemplate: FC<CreateTemplateProps> = ({route}) => {
       // console.log('route', route?.params?.item);
     }
   }, [route]);
+  const pageInfo = useRoute();
+  console.log('109', pageInfo.name);
 
   return (
     <View style={styles.container}>

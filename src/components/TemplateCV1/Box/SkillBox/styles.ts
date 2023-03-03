@@ -5,13 +5,19 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
-  workExperience: {
+  skillsTitle: {
     height: 30,
     width: 230,
-    margin: 6,
     borderWidth: 0,
     padding: 6,
-    backgroundColor: '#ccc',
+    // backgroundColor: '#ccc',
+  },
+  skillsText: {
+    height: 30,
+    width: 230,
+    borderWidth: 0,
+    padding: 6,
+    // backgroundColor: '#ccc',
   },
 });
 

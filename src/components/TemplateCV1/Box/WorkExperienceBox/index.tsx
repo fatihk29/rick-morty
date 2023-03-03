@@ -6,6 +6,8 @@ import {Controller, useForm} from 'react-hook-form';
 // project imports
 import styles from './styles';
 
+interface WorkExperienceBoxProps {}
+
 const defaultValues = {
   workExperience: 'Work Experience',
   workPosition: '',
@@ -13,7 +15,7 @@ const defaultValues = {
   workDecription: '',
 };
 
-const WorkExperienceBox: FC<any> = () => {
+const WorkExperienceBox: FC<WorkExperienceBoxProps> = () => {
   const {handleSubmit, control, watch} = useForm({
     defaultValues,
     mode: 'all',
