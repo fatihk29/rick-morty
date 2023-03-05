@@ -17,7 +17,8 @@ const SeePDF: FC<SeePDFProps> = ({route}) => {
   }, [route]);
 
   const source = {
-    uri: 'http://samples.leanpub.com/thereactnativebook-sample.pdf',
+    // uri: 'http://samples.leanpub.com/thereactnativebook-sample.pdf',
+    uri: '/storage/emulated/0/Android/data/com.rickandmorty/files/Invoices/invoice_1.pdf',
     cache: true,
   };
   //const source = require('./test.pdf');  // ios only

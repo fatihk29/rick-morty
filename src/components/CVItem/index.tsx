@@ -20,6 +20,7 @@ import {NavigationProp} from '@react-navigation/native';
 import {APP_ROUTER} from '../../navigation/app-router';
 import DeleteCVModal from '../../screens/Modal/DeleteCVModal';
 import style from './style';
+import generatePDF from '../../helpers/generatePDF';
 
 interface CVItemProps {
   item: any;
@@ -133,6 +134,7 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
                 marginRight: -14,
               }}
               onPress={() => {
+                generatePDF(1001);
                 navigation.navigate(APP_ROUTER.SCREEN.seepdf.path, {
                   item: 'as',
                 });
@@ -150,6 +152,7 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
           </HStack>
           <Button
             _pressed={{backgroundColor: '#fff'}}
+            // onPress={() => generatePDF(1001)}
             variant="subtle"
             endIcon={
               <Icon as={Ionicons} name="cloud-download-outline" size="6" />

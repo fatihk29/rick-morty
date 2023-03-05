@@ -42,14 +42,16 @@ const PersonalInfoBox: FC<any> = () => {
       <Controller
         name="summaryTitle"
         control={control}
-        render={({field: {onChange, value}}) => (
-          <TextInput
-            style={styles.summaryTitle}
-            onChangeText={onChange}
-            value={value}
-            placeholder="SUMMARY"
-          />
-        )}
+        render={({field: {onChange, value}}) => {
+          return (
+            <TextInput
+              style={styles.summaryTitle}
+              onChangeText={onChange}
+              value={value}
+              placeholder="SUMMARY"
+            />
+          );
+        }}
       />
       <Controller
         name="summaryText"

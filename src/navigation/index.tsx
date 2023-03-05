@@ -11,6 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import CreateTemplate from '../screens/CreateTemplate';
 import ListCV from '../screens/ListCV';
 import SeePDF from '../screens/SeePDF';
+import DoCV from '../screens/DoCV';
 import {HeaderMidTitle, HeaderRightTitle} from '../components/ScreenHeaders';
 import {APP_ROUTER} from './app-router';
 
@@ -35,6 +36,19 @@ const TabNavigator = () => {
         options={() => ({
           headerTitle: () => (
             <HeaderMidTitle title={APP_ROUTER.SCREEN.createcv.tabBarLabel} />
+          ),
+          headerRight: () => <HeaderRightTitle icon={'settings'} />,
+          tabBarIcon: () => (
+            <MaterialIcons name="create" size={30} color="#6495ED" />
+          ),
+        })}
+      />
+      <Tab.Screen
+        name={APP_ROUTER.SCREEN.docv.path}
+        component={DoCV}
+        options={() => ({
+          headerTitle: () => (
+            <HeaderMidTitle title={APP_ROUTER.SCREEN.docv.tabBarLabel} />
           ),
           headerRight: () => <HeaderRightTitle icon={'settings'} />,
           tabBarIcon: () => (
@@ -93,6 +107,26 @@ const MyTabBar: FC<any> = ({navigation}) => {
             />
             <Text color="white" fontSize="12">
               {APP_ROUTER.SCREEN.createcv.tabBarLabel}
+            </Text>
+          </Center>
+        </Pressable>
+        <Pressable
+          opacity={selected === 2 ? 1 : 0.5}
+          py="2"
+          flex={1}
+          onPress={() => {
+            setSelected(2);
+            navigation.navigate(APP_ROUTER.SCREEN.docv.path);
+          }}>
+          <Center>
+            <Icon
+              mb="1"
+              as={<MaterialIcons name="create" />}
+              color="white"
+              size="md"
+            />
+            <Text color="white" fontSize="12">
+              {APP_ROUTER.SCREEN.docv.tabBarLabel}
             </Text>
           </Center>
         </Pressable>

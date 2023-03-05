@@ -115,6 +115,7 @@ function CreatePDF() {
         directory: 'Invoices',
       };
       const file = await RNHTMLtoPDF.convert(options);
+      console.log('file :>> ', file);
       Alert.alert('Success', `PDF saved to ${file.filePath}`);
       setCount(count + 1);
       setIsLoading(false);

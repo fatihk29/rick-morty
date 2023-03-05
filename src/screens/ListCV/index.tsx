@@ -44,13 +44,11 @@ const ListCV: FC<ListCVProps> = ({navigation}) => {
             return <CVItem item={item} navigation={navigation} />;
           }}
           keyExtractor={item => item.id}
-          ListHeaderComponent={() => {
-            return (
-              <Center>
-                <Text height={5}>Total {data?.length} CV</Text>
-              </Center>
-            );
-          }}
+          ListHeaderComponent={() => (
+            <Center>
+              <Text height={5}>Total {data?.length} CV</Text>
+            </Center>
+          )}
         />
       ) : (
         <EmptyCVItem navigation={navigation} />
