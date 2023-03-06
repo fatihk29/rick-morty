@@ -10,11 +10,15 @@ export const APP_ROUTER = {
     },
     docv: {
       path: 'docv',
-      tabBarLabel: 'Do CV',
+      tabBarLabel: 'Template',
     },
     seepdf: {
       path: 'seepdf',
       tabBarLabel: 'See PDF',
+    },
+    fillTemplate: {
+      path: 'fillTemplate',
+      tabBarLabel: 'Fill Template',
     },
   },
 };

@@ -62,7 +62,7 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
 
           <Pressable
             onPress={() => {
-              navigation.navigate(APP_ROUTER.SCREEN.createcv.path, {
+              navigation.navigate(APP_ROUTER.SCREEN.fillTemplate.path, {
                 item,
               });
             }}

@@ -4,14 +4,16 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Icon, Box, Text, HStack, Pressable, Center} from 'native-base';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FAIcons from 'react-native-vector-icons/FontAwesome';
+import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // project imports
 // SCREENS
 import CreateTemplate from '../screens/CreateTemplate';
+import FillTemplate from '../screens/FillTemplate';
 import ListCV from '../screens/ListCV';
 import SeePDF from '../screens/SeePDF';
-import DoCV from '../screens/DoCV';
+import TemplateCV from '../screens/TemplateCV';
 import {HeaderMidTitle, HeaderRightTitle} from '../components/ScreenHeaders';
 import {APP_ROUTER} from './app-router';
 
@@ -31,11 +33,13 @@ const TabNavigator = () => {
         })}
       />
       <Tab.Screen
-        name={APP_ROUTER.SCREEN.createcv.path}
-        component={CreateTemplate}
+        name={APP_ROUTER.SCREEN.fillTemplate.path}
+        component={FillTemplate}
         options={() => ({
           headerTitle: () => (
-            <HeaderMidTitle title={APP_ROUTER.SCREEN.createcv.tabBarLabel} />
+            <HeaderMidTitle
+              title={APP_ROUTER.SCREEN.fillTemplate.tabBarLabel}
+            />
           ),
           headerRight: () => <HeaderRightTitle icon={'settings'} />,
           tabBarIcon: () => (
@@ -45,7 +49,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name={APP_ROUTER.SCREEN.docv.path}
-        component={DoCV}
+        component={TemplateCV}
         options={() => ({
           headerTitle: () => (
             <HeaderMidTitle title={APP_ROUTER.SCREEN.docv.tabBarLabel} />
@@ -78,8 +82,12 @@ const MyTabBar: FC<any> = ({navigation}) => {
             <Icon
               mb="1"
               as={
-                <MaterialCommunityIcons
-                  name={selected === 0 ? 'home' : 'home-outline'}
+                <MCIcons
+                  name={
+                    selected === 0
+                      ? 'format-list-bulleted-square'
+                      : 'format-list-checkbox'
+                  }
                 />
               }
               color="white"
@@ -96,7 +104,7 @@ const MyTabBar: FC<any> = ({navigation}) => {
           flex={1}
           onPress={() => {
             setSelected(1);
-            navigation.navigate(APP_ROUTER.SCREEN.createcv.path);
+            navigation.navigate(APP_ROUTER.SCREEN.fillTemplate.path);
           }}>
           <Center>
             <Icon
@@ -106,7 +114,7 @@ const MyTabBar: FC<any> = ({navigation}) => {
               size="md"
             />
             <Text color="white" fontSize="12">
-              {APP_ROUTER.SCREEN.createcv.tabBarLabel}
+              {APP_ROUTER.SCREEN.fillTemplate.tabBarLabel}
             </Text>
           </Center>
         </Pressable>
@@ -119,12 +127,7 @@ const MyTabBar: FC<any> = ({navigation}) => {
             navigation.navigate(APP_ROUTER.SCREEN.docv.path);
           }}>
           <Center>
-            <Icon
-              mb="1"
-              as={<MaterialIcons name="create" />}
-              color="white"
-              size="md"
-            />
+            <Icon mb="1" as={<FAIcons name="cogs" />} color="white" size="md" />
             <Text color="white" fontSize="12">
               {APP_ROUTER.SCREEN.docv.tabBarLabel}
             </Text>

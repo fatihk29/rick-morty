@@ -28,7 +28,7 @@ const PersonNameBox: FC<any> = () => {
 
   const onSubmit = () => {
     const data = watch();
-    console.log('data :>> ', data);
+    // console.log('data :>> ', data);
   };
   // console.log('render in PersonNameBox');
 
@@ -44,7 +44,7 @@ const PersonNameBox: FC<any> = () => {
           // console.log('name', a);
           // console.log('formState :>> ', touchedFields);
           // console.log('m :>> ', m.dirtyFields);
-          console.log('fieldState :>> ', formState);
+          // console.log('fieldState :>> ', formState);
 
           return (
             <TextInput

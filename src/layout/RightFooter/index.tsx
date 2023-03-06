@@ -10,8 +10,21 @@ import {
 import FAIcons from 'react-native-vector-icons/FontAwesome';
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+const TEMPLATE_FONT = [
+  {bg: '#064e3b', iconName: 'size-xl'},
+  {bg: '#404040', iconName: 'size-l'},
+  {bg: '#0c4a6e', iconName: 'size-m'},
+];
+
 const RightFooter = () => {
   const {isOpen, onToggle} = useDisclose();
+
+  const toggleHandler = (i?: string) => {
+    console.log('i :>> ', i);
+    setTimeout(() => {
+      onToggle();
+    }, 500);
+  };
 
   return (
     <React.Fragment>
@@ -48,66 +61,32 @@ const RightFooter = () => {
               },
             },
           }}>
-          <IconButton
-            mb="4"
-            variant="solid"
-            bg="red.400"
-            colorScheme="yellow"
-            borderRadius="full"
-            onPress={() => {
-              onToggle();
-            }}
-            icon={
-              <Icon
-                as={MCIcons}
-                _dark={{
-                  color: 'warmGray.50',
+          {TEMPLATE_FONT.map((i, index) => {
+            return (
+              <IconButton
+                key={index}
+                mb={index === TEMPLATE_FONT.length - 1 ? '12' : '4'}
+                variant="solid"
+                bg="red.400"
+                colorScheme="yellow"
+                borderRadius="full"
+                onPress={() => {
+                  toggleHandler('xl');
                 }}
-                size="7"
-                name="size-xl"
-                color="warmGray.50"
+                icon={
+                  <Icon
+                    as={MCIcons}
+                    _dark={{
+                      color: 'warmGray.50',
+                    }}
+                    size="7"
+                    name={i.iconName}
+                    color="warmGray.50"
+                  />
+                }
               />
-            }
-          />
-          <IconButton
-            mb="4"
-            variant="solid"
-            bg="red.400"
-            colorScheme="red"
-            borderRadius="full"
-            onPress={() => {
-              onToggle();
-            }}
-            icon={
-              <Icon
-                as={MCIcons}
-                _dark={{
-                  color: 'warmGray.50',
-                }}
-                size="6"
-                name="size-l"
-                colorScheme="red"
-              />
-            }
-          />
-          <IconButton
-            mb="12"
-            variant="solid"
-            bg="red.400"
-            colorScheme="red"
-            borderRadius="full"
-            icon={
-              <Icon
-                as={MCIcons}
-                size="6"
-                name="size-m"
-                _dark={{
-                  color: 'warmGray.50',
-                }}
-                color="warmGray.50"
-              />
-            }
-          />
+            );
+          })}
         </Stagger>
       </Box>
       <Pressable position="absolute" bottom="0" right="0" px="2" py="2">

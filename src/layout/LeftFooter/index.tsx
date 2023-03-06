@@ -24,8 +24,24 @@ const FormatColorIcon = () => {
   );
 };
 
+const TEMPLATE_COLOR = [
+  {bg: '#064e3b'},
+  {bg: '#404040'},
+  {bg: '#0c4a6e'},
+  {bg: '#1c1917'},
+  {bg: '#1e3a8a'},
+];
+
 const LeftFooter = () => {
   const {isOpen, onToggle} = useDisclose();
+
+  const toggleHandler = (i?: string) => {
+    console.log('i :>> ', i);
+    setTimeout(() => {
+      onToggle();
+    }, 500);
+  };
+
   return (
     <React.Fragment>
       <Box
@@ -68,61 +84,22 @@ const LeftFooter = () => {
               },
             },
           }}>
-          <IconButton
-            mb="4"
-            variant="solid"
-            bg="#064e3b"
-            colorScheme="indigo"
-            borderRadius="full"
-            onPress={() => {
-              onToggle();
-            }}
-            icon={<FormatColorIcon />}
-          />
-          <IconButton
-            mb="4"
-            variant="solid"
-            bg="#404040"
-            colorScheme="indigo"
-            borderRadius="full"
-            onPress={() => {
-              onToggle();
-            }}
-            icon={<FormatColorIcon />}
-          />
-          <IconButton
-            mb="4"
-            variant="solid"
-            bg="#0c4a6e"
-            colorScheme="yellow"
-            borderRadius="full"
-            onPress={() => {
-              onToggle();
-            }}
-            icon={<FormatColorIcon />}
-          />
-          <IconButton
-            mb="4"
-            variant="solid"
-            bg="#1c1917"
-            colorScheme="teal"
-            borderRadius="full"
-            onPress={() => {
-              onToggle();
-            }}
-            icon={<FormatColorIcon />}
-          />
-          <IconButton
-            mb="12"
-            variant="solid"
-            bg="#1e3a8a"
-            colorScheme="red"
-            borderRadius="full"
-            onPress={() => {
-              onToggle();
-            }}
-            icon={<FormatColorIcon />}
-          />
+          {TEMPLATE_COLOR.map((i, index) => {
+            return (
+              <IconButton
+                key={index}
+                mb={index === TEMPLATE_COLOR.length - 1 ? '12' : '4'}
+                variant="solid"
+                bg={i.bg}
+                colorScheme="indigo"
+                borderRadius="full"
+                onPress={() => {
+                  toggleHandler(i.bg);
+                }}
+                icon={<FormatColorIcon />}
+              />
+            );
+          })}
         </Stagger>
       </Box>
 

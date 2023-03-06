@@ -25,7 +25,7 @@ const EmptyCVItem: FC<EmptyCVItemProps> = ({navigation}) => {
       alignItems="center"
       style={style.itemContainer}
       onPress={() => {
-        navigation.navigate(APP_ROUTER.SCREEN.createcv.path, {
+        navigation.navigate(APP_ROUTER.SCREEN.fillTemplate.path, {
           item: '',
         });
       }}>
