@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {
   Pressable,
   Icon,
@@ -8,116 +8,95 @@ import {
   Text,
   VStack,
   Button,
+  View,
 } from 'native-base';
-import {Controller, useForm, FormProvider} from 'react-hook-form';
+import {Controller, useForm, useFieldArray} from 'react-hook-form';
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // project imports
 import styles from './styles';
 
-const defaultValues = [
-  {
-    educationDegree: 'Degree',
-    educationSchool: 'School',
-  },
-  {
-    educationDegree: 'Degree',
-    educationSchool: 'School',
-  },
-];
+const defaultValues = {
+  educationDegree: 'Degree',
+  educationSchool: 'School',
+  educationTitle: 'Education',
+};
 
 const fieldArrayName = 'array';
 
-const EducationInputs: FC<any> = ({}) => {
-  //   const data = useWatch({
-  //     control,
-  //     name: `${fieldArrayName}.${index}`,
-  //   });
+const EducationInputs: FC<any> = () => {
+  const {handleSubmit, control} = useForm();
 
-  //   const {control, handleSubmit} = useForm();
-  //   const {fields, append, update, remove} = useFieldArray({
-  //     control,
-  //     name: fieldArrayName,
-  //     defaultValues: {
-  //       [fieldArrayName]: [],
-  //     },
-  //   });
-  //   const onSubmit = data => console.log(data);
-
-  const [education, setEducation] = useState([defaultValues]);
-
-  const methods = useForm({
-    // defaultValues,
-    mode: 'all',
+  const {fields, append, remove} = useFieldArray({
+    control,
+    name: fieldArrayName,
+    defaultValues: {
+      fieldArrayName: [],
+    },
   });
 
-  const {handleSubmit, control, watch} = methods;
-
-  const onSubmit = () => {
-    const data = watch();
+  const onSubmit = (data: any) => {
+    if (!data.educationTitle) {
+      data.educationTitle = defaultValues.educationTitle;
+    }
     console.log('data :>> ', data);
   };
 
   return (
     <ScrollView style={styles.container}>
-      <Pressable
-        onPress={() => {
-          setEducation((prev: any) => {
-            if (prev?.length >= 3) {
-              console.log('if :>> ');
-              return prev;
-            } else if (prev?.length < 3) {
-              return [
-                ...prev,
-                {
-                  educationTitle: 'EDUCATION',
-                  educationDegree: 'Degree',
-                  educationSchool: 'School',
-                  educationProject: '',
-                },
-              ];
+      <View>
+        <Pressable
+          onPress={() => {
+            if (fields.length > 2) {
+              return;
             }
-          });
-        }}
-        position="absolute"
-        top="0"
-        right="0"
-        px="1"
-        py="10"
-        // bg="violet.500"
-        _dark={{
-          bg: 'violet.400',
-        }}>
-        <Icon as={MCIcons} name="plus-thick" size="6" color="secondary.600" />
-      </Pressable>
-      {education.map((item, i) => {
-        const fieldName = `${i}`;
-        // console.log('fieldName', fieldName);
-        // console.log('item :>> ', item);
-        return (
-          <Stack
-            key={i}
-            space={4}
-            w="100%"
-            alignItems="center"
-            style={{marginTop: 40}}>
-            {i === 0 || (
+            append(defaultValues);
+          }}
+          position="absolute"
+          top="0"
+          right="0"
+          px="0"
+          py="2"
+          _dark={{
+            bg: 'violet.400',
+          }}>
+          <Icon as={MCIcons} name="plus-thick" size="6" color="secondary.600" />
+        </Pressable>
+      </View>
+      <Stack space={3} alignItems="center">
+        <Text>Education Title</Text>
+        <Controller
+          name="educationTitle"
+          // name={`${fieldArrayName}.${0}.educationTitle`}
+          control={control}
+          render={({field: {onChange, value}}) => (
+            <Input
+              style={styles.educationTitle}
+              onChangeText={onChange}
+              value={value || 'Education'}
+              placeholder="Education"
+              w={{
+                base: '75%',
+                md: '100%',
+              }}
+            />
+          )}
+        />
+      </Stack>
+
+      <Stack space={4} alignItems="center">
+        {fields.map((item, i) => {
+          return (
+            <Stack key={i} space={4} w="100%" alignItems="center">
               <Pressable
                 onPress={() => {
-                  setEducation((prev: any) => {
-                    prev.splice(i, 1);
-                    return [...prev];
-                  });
+                  remove(i);
                 }}
                 position="absolute"
                 top="0"
                 right="0"
                 px="1"
-                py="0"
-                // bg="violet.500"
-                _dark={{
-                  bg: 'violet.400',
-                }}>
+                py="0">
                 <Icon
                   as={MCIcons}
                   name="minus-thick"
@@ -125,11 +104,10 @@ const EducationInputs: FC<any> = ({}) => {
                   color="secondary.600"
                 />
               </Pressable>
-            )}
-            <Text>First Name {i}:</Text>
-            <FormProvider {...methods}>
+
+              <Text>Your Education Nu: {i + 1}</Text>
               <Controller
-                name={`test.${i}.educationDegree`}
+                name={`${fieldArrayName}.${i}.educationDegree`}
                 control={control}
                 render={({field: {onChange, value}}) => (
                   <Input
@@ -138,14 +116,14 @@ const EducationInputs: FC<any> = ({}) => {
                     value={value}
                     placeholder="Degree"
                     w={{
-                      base: '70%',
+                      base: '75%',
                       md: '100%',
                     }}
                   />
                 )}
               />
               <Controller
-                name={`test.${i}.educationSchool`}
+                name={`${fieldArrayName}.${i}.educationSchool`}
                 control={control}
                 render={({field: {onChange, value}}) => (
                   <Input
@@ -154,17 +132,16 @@ const EducationInputs: FC<any> = ({}) => {
                     value={value}
                     placeholder="educationSchool"
                     w={{
-                      base: '70%',
+                      base: '75%',
                       md: '100%',
                     }}
                   />
                 )}
               />
-            </FormProvider>
-          </Stack>
-        );
-      })}
-
+            </Stack>
+          );
+        })}
+      </Stack>
       <VStack space={4} alignItems="center">
         <Button variant="subtle" size="xs" onPress={handleSubmit(onSubmit)}>
           Download

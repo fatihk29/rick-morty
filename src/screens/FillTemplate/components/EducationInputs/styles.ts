@@ -6,30 +6,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginTop: 10,
   },
-  educationTitle: {
-    // height: 30,
-    width: 200,
-    // margin: 6,
-    borderWidth: 0,
-    padding: 2,
-    // backgroundColor: '#ccc',
-  },
-  educationDegree: {
-    height: 30,
-    width: 230,
-    // margin: 6,
-    borderWidth: 0,
-    padding: 2,
-    // backgroundColor: '#ccc',
-  },
-  educationSchool: {
-    height: 30,
-    width: 230,
-    // margin: 6,
-    borderWidth: 0,
-    padding: 2,
-    // backgroundColor: '#ccc',
-  },
+  educationTitle: {},
+  educationDegree: {},
+  educationSchool: {},
 });
 
 export default styles;
