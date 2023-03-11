@@ -65,7 +65,7 @@ const TabNavigator = () => {
 };
 
 const MyTabBar: FC<any> = ({navigation}) => {
-  const [selected, setSelected] = React.useState(0);
+  const [selected, setSelected] = React.useState(1);
 
   return (
     <Box bg="white" safeAreaTop width="100%" alignSelf="center">
