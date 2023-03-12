@@ -21,7 +21,7 @@ const renderScene = SceneMap({
 export default function TabViewExample() {
   const layout = useWindowDimensions();
 
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   const [routes] = useState([
     {key: 'first', title: 'Personal Informations'},
     {key: 'second', title: 'Education'},

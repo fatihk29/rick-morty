@@ -24,15 +24,6 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator tabBar={props => <MyTabBar {...props} />}>
       <Tab.Screen
-        name={APP_ROUTER.SCREEN.listcv.path}
-        component={ListCV}
-        options={() => ({
-          headerTitle: () => (
-            <HeaderMidTitle title={APP_ROUTER.SCREEN.listcv.tabBarLabel} />
-          ),
-        })}
-      />
-      <Tab.Screen
         name={APP_ROUTER.SCREEN.fillTemplate.path}
         component={FillTemplate}
         options={() => ({
@@ -44,6 +35,15 @@ const TabNavigator = () => {
           headerRight: () => <HeaderRightTitle icon={'settings'} />,
           tabBarIcon: () => (
             <MaterialIcons name="create" size={30} color="#6495ED" />
+          ),
+        })}
+      />
+      <Tab.Screen
+        name={APP_ROUTER.SCREEN.listcv.path}
+        component={ListCV}
+        options={() => ({
+          headerTitle: () => (
+            <HeaderMidTitle title={APP_ROUTER.SCREEN.listcv.tabBarLabel} />
           ),
         })}
       />

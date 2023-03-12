@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {
   Pressable,
   Icon,
@@ -10,8 +10,10 @@ import {
   Button,
   View,
 } from 'native-base';
+import {TextInput, Platform} from 'react-native';
 import {Controller, useForm, useFieldArray} from 'react-hook-form';
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 // project imports
 import styles from './styles';
@@ -20,6 +22,7 @@ const defaultValues = {
   educationDegree: 'Degree',
   educationSchool: 'School',
   educationTitle: 'Education',
+  educationExplanation: '',
 };
 
 const fieldArrayName = 'array';
@@ -41,6 +44,22 @@ const EducationInputs: FC<any> = () => {
     }
     console.log('data :>> ', data);
   };
+
+  const [datePicker, setDatePicker] = useState(false);
+
+  const [date, setDate] = useState(new Date());
+
+  function showDatePicker() {
+    setDatePicker(true);
+  }
+
+  function onDateSelected(event: any, value: any) {
+    setDate(value);
+    console.log('aa :>> ');
+    setDatePicker(false);
+  }
+
+  console.log('datePicker :>> ', datePicker);
 
   return (
     <ScrollView style={styles.container}>
@@ -138,6 +157,40 @@ const EducationInputs: FC<any> = () => {
                   />
                 )}
               />
+
+              <Controller
+                name={`${fieldArrayName}.${i}.educationExplanation`}
+                control={control}
+                render={({field: {onChange, value}}) => (
+                  <Input
+                    // style={styles.educationSchool}
+                    onChangeText={onChange}
+                    value={value}
+                    placeholder="Explanation"
+                    w={{
+                      base: '75%',
+                      md: '100%',
+                    }}
+                  />
+                )}
+              />
+              {!datePicker && (
+                <View style={{margin: 10}}>
+                  <Button color="green" onPress={showDatePicker}>
+                    From
+                  </Button>
+                </View>
+              )}
+
+              {datePicker && (
+                <DateTimePicker
+                  value={date}
+                  mode={'date'}
+                  display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                  is24Hour={true}
+                  onChange={onDateSelected}
+                />
+              )}
             </Stack>
           );
         })}

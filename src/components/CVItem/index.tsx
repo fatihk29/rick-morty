@@ -59,7 +59,6 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
               borderRadius={60}
             />
           </Box>
-
           <Pressable
             onPress={() => {
               navigation.navigate(APP_ROUTER.SCREEN.fillTemplate.path, {
