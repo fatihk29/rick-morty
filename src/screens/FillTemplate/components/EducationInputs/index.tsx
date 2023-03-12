@@ -10,7 +10,7 @@ import {
   Button,
   View,
 } from 'native-base';
-import {TextInput, Platform} from 'react-native';
+import {Platform} from 'react-native';
 import {Controller, useForm, useFieldArray} from 'react-hook-form';
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import DateTimePicker from '@react-native-community/datetimepicker';

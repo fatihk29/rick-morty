@@ -18,14 +18,14 @@ import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
 
 const defaultValues = {
-  skillTitle: 'Skills',
-  skillText: '',
+  languageTitle: 'Languages',
+  languageText: '',
   // skillPercentage: '',
 };
 
 const fieldArrayName = 'array';
 
-const SkillsInputs: FC<any> = () => {
+const LanguageInputs: FC<any> = () => {
   const {handleSubmit, control} = useForm();
 
   const {fields, append, remove} = useFieldArray({
@@ -64,7 +64,7 @@ const SkillsInputs: FC<any> = () => {
       <Stack space={3} alignItems="center">
         <Text>Skill Title</Text>
         <Controller
-          name="skillTitle"
+          name="languageTitle"
           // name={`${fieldArrayName}.${0}.educationTitle`}
           control={control}
           render={({field: {onChange, value}}) => (
@@ -105,7 +105,7 @@ const SkillsInputs: FC<any> = () => {
 
               <Text>Your Skills Nu: {i + 1}</Text>
               <Controller
-                name={`${fieldArrayName}.${i}.skillText`}
+                name={`${fieldArrayName}.${i}.languageText`}
                 control={control}
                 render={({field: {onChange, value}}) => (
                   <Input
@@ -119,24 +119,6 @@ const SkillsInputs: FC<any> = () => {
                   />
                 )}
               />
-              {/* <Controller
-                name={`${fieldArrayName}.${i}.skillPercentage`}
-                control={control}
-                render={({field: {onChange, value}}) => (
-                  <Slider
-                    maxW="300"
-                    defaultValue={70}
-                    colorScheme="cyan"
-                    onChangeEnd={v => {
-                      v && onChange(Math.floor(v));
-                    }}>
-                    <Slider.Track>
-                      <Slider.FilledTrack />
-                    </Slider.Track>
-                    <Slider.Thumb />
-                  </Slider>
-                )}
-              /> */}
             </Stack>
           );
         })}
@@ -150,4 +132,4 @@ const SkillsInputs: FC<any> = () => {
   );
 };
 
-export default SkillsInputs;
+export default LanguageInputs;

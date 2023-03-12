@@ -2,13 +2,12 @@ import {StyleSheet} from 'react-native';
 
 const SIZE = 70;
 
-const fontSizeSM = 12;
-const fontSizeMD = 14;
+// const fontSizeSM = 12;
+// const fontSizeMD = 14;
 
 const styles = StyleSheet.create({
   yourName: {},
   yourProfession: {},
-  ////
   image: {
     width: SIZE,
     height: SIZE,

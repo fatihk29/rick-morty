@@ -4,17 +4,18 @@ import {TabView, SceneMap} from 'react-native-tab-view';
 import {Pressable, Box, useColorModeValue} from 'native-base';
 
 // project imports
-import PersonNameInputs from './components/PersonNameInputs';
+import PersonalInputs from './components/PersonalInputs';
 import EducationInputs from './components/EducationInputs';
 import WorkExperienceInputs from './components/WorkExperienceInputs';
 import SkillsInputs from './components/SkillsInputs';
+import LanguageInputs from './components/LanguageInputs';
 
 const renderScene = SceneMap({
-  first: () => <PersonNameInputs />,
+  first: () => <PersonalInputs />,
   second: () => <EducationInputs />,
   third: () => <WorkExperienceInputs />,
   fourth: () => <SkillsInputs />,
-  // fifth: FifthRoute,
+  fifth: () => <LanguageInputs />,
   // sixth: SixthRoute,
 });
 
@@ -27,7 +28,7 @@ export default function TabViewExample() {
     {key: 'second', title: 'Education'},
     {key: 'third', title: 'Work Experience'},
     {key: 'fourth', title: 'Skills'},
-    // {key: 'fifth', title: 'fifth'},
+    {key: 'fifth', title: 'Languages'},
     // {key: 'sixth', title: 'sixth'},
   ]);
 

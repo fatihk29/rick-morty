@@ -13,8 +13,9 @@ import {
 } from 'native-base';
 import {Controller, useForm} from 'react-hook-form';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import * as Yup from 'yup';
-import {yupResolver} from '@hookform/resolvers/yup';
+import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+// import * as Yup from 'yup';
+// import {yupResolver} from '@hookform/resolvers/yup';
 
 // project imports
 import styles from './styles';
@@ -23,31 +24,36 @@ const defaultValues = {
   image: '',
   yourName: '',
   yourProfession: '',
-  summaryTitle: 'SUMMARY',
-  summaryText: '2 years of experience',
-  personalDetails: 'PERSONAL DETAILS',
-  locationTitle: 'Location',
+  summaryTitle: '',
+  summaryText: '',
+  contactDetails: 'Contact Details',
   locationText: '',
-  contactTitle: 'CONTACT',
+
+  //
   email: '',
   phone: '',
+  location: '',
+  website: '',
+  linkedin: '',
+  github: '',
 };
 
 const inputBase = '80%';
 
-const validationSchema = Yup.object().shape({
-  yourName: Yup.string().required('validationMessages:email:required').min(5),
-});
+// const validationSchema = Yup.object().shape({
+//   yourName: Yup.string().required('validationMessages:email:required').min(5),
+// });
 
-const PersonNameInputs: FC<any> = () => {
-  const {handleSubmit, control, watch, register, formState} = useForm({
+const PersonalInputs: FC<any> = () => {
+  const {handleSubmit, control} = useForm({
     defaultValues,
     mode: 'onChange',
-    resolver: yupResolver(validationSchema),
+    // resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = () => {
-    const data = watch();
+  const onSubmit = (data: any) => {
+    console.log('rtrtr :>> ');
+    // const data = watch();
     console.log('data :>> ', data);
   };
 
@@ -158,46 +164,14 @@ const PersonNameInputs: FC<any> = () => {
 
         {/* => Personal Details */}
         <Controller
-          name="personalDetails"
+          name="contactDetails"
           control={control}
           render={({field: {onChange, value}}) => (
             <Input
               style={styles.personalDetails}
               onChangeText={onChange}
               value={value}
-              placeholder="personalDetails"
-              w={{
-                base: inputBase,
-                md: '100%',
-              }}
-            />
-          )}
-        />
-        <Controller
-          name="locationTitle"
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <Input
-              style={styles.locationTitle}
-              onChangeText={onChange}
-              value={value}
-              placeholder="locationTitle"
-              w={{
-                base: inputBase,
-                md: '100%',
-              }}
-            />
-          )}
-        />
-        <Controller
-          name="locationText"
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <Input
-              style={styles.locationText}
-              onChangeText={onChange}
-              value={value}
-              placeholder="Enter your city"
+              placeholder="Contact Details"
               w={{
                 base: inputBase,
                 md: '100%',
@@ -209,28 +183,11 @@ const PersonNameInputs: FC<any> = () => {
 
         {/* => Contact  */}
         <Controller
-          name="contactTitle"
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <Input
-              style={styles.contactTitle}
-              onChangeText={onChange}
-              value={value}
-              placeholder="contactTitle"
-              w={{
-                base: inputBase,
-                md: '100%',
-              }}
-            />
-          )}
-        />
-        <Controller
           name="email"
           control={control}
           render={({field: {onChange, value}}) => (
             <Input
               style={styles.emailText}
-              // variant="unstyled"
               onChangeText={onChange}
               value={value}
               w={{
@@ -239,10 +196,10 @@ const PersonNameInputs: FC<any> = () => {
               }}
               InputLeftElement={
                 <Icon
-                  as={<MaterialIcons name="person" />}
-                  size={6}
+                  as={<MCIcons name="email-outline" />}
+                  size={7}
                   ml="0"
-                  color="muted.400"
+                  color="#9a3412"
                 />
               }
               placeholder="Enter your email"
@@ -250,12 +207,11 @@ const PersonNameInputs: FC<any> = () => {
           )}
         />
         <Controller
-          name="locationText"
+          name="location"
           control={control}
           render={({field: {onChange, value}}) => (
             <Input
               style={styles.phoneText}
-              // variant="unstyled"
               onChangeText={onChange}
               value={value}
               w={{
@@ -265,13 +221,96 @@ const PersonNameInputs: FC<any> = () => {
               InputLeftElement={
                 <Icon
                   as={<MaterialIcons name="phone" />}
-                  size={6}
+                  size={7}
                   ml="0"
-                  // style={{backgroundColor: 'red'}}
-                  color="muted.400"
+                  color="#dc2626"
                 />
               }
               placeholder="Enter your phone number"
+            />
+          )}
+        />
+        <Controller
+          name="locationText"
+          control={control}
+          render={({field: {onChange, value}}) => (
+            <Input
+              style={styles.phoneText}
+              onChangeText={onChange}
+              value={value}
+              w={{
+                base: inputBase,
+                md: '100%',
+              }}
+              InputLeftElement={
+                <Icon
+                  as={<MaterialIcons name="location-pin" />}
+                  size={7}
+                  color="#16a34a"
+                />
+              }
+              placeholder="Enter your location"
+            />
+          )}
+        />
+        <Controller
+          name="website"
+          control={control}
+          render={({field: {onChange, value}}) => (
+            <Input
+              style={styles.phoneText}
+              onChangeText={onChange}
+              value={value}
+              w={{
+                base: inputBase,
+                md: '100%',
+              }}
+              InputLeftElement={
+                <Icon as={<MCIcons name="web" />} size={7} color="#047857" />
+              }
+              placeholder="Website"
+            />
+          )}
+        />
+        <Controller
+          name="linkedin"
+          control={control}
+          render={({field: {onChange, value}}) => (
+            <Input
+              style={styles.phoneText}
+              onChangeText={onChange}
+              value={value}
+              w={{
+                base: inputBase,
+                md: '100%',
+              }}
+              InputLeftElement={
+                <Icon
+                  as={<MCIcons name="linkedin" />}
+                  size={7}
+                  color="#0072b1"
+                />
+              }
+              placeholder="Linkedin"
+            />
+          )}
+        />
+        <Controller
+          name="github"
+          control={control}
+          render={({field: {onChange, value}}) => (
+            <Input
+              style={styles.phoneText}
+              onChangeText={onChange}
+              value={value}
+              w={{
+                base: inputBase,
+                md: '100%',
+              }}
+              InputLeftElement={
+                <Icon as={<MCIcons name="github" />} size={7} color="black" />
+              }
+              placeholder="Github"
             />
           )}
         />
@@ -287,4 +326,4 @@ const PersonNameInputs: FC<any> = () => {
   );
 };
 
-export default PersonNameInputs;
+export default PersonalInputs;
