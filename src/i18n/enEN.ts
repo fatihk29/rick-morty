@@ -1,5 +1,10 @@
 const enEN = {
+  buttonTitle: {
+    edit: 'Edit',
+  },
+
   photo: 'photo',
+
   personal: {
     heading: 'Summary',
     text: 'Paragraph',

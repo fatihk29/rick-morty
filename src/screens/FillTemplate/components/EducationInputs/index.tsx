@@ -13,7 +13,7 @@ import {
 import {Platform} from 'react-native';
 import {Controller, useForm, useFieldArray} from 'react-hook-form';
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import RNDateTimePicker from '@react-native-community/datetimepicker';
 
 // project imports
 import styles from './styles';
@@ -21,14 +21,15 @@ import styles from './styles';
 const defaultValues = {
   educationDegree: 'Degree',
   educationSchool: 'School',
-  educationTitle: 'Education',
+  educationTitle: '',
   educationExplanation: '',
+  educationStart: new Date(),
 };
 
 const fieldArrayName = 'array';
 
 const EducationInputs: FC<any> = () => {
-  const {handleSubmit, control} = useForm();
+  const {handleSubmit, control, reset} = useForm();
 
   const {fields, append, remove} = useFieldArray({
     control,
@@ -39,27 +40,24 @@ const EducationInputs: FC<any> = () => {
   });
 
   const onSubmit = (data: any) => {
-    if (!data.educationTitle) {
-      data.educationTitle = defaultValues.educationTitle;
-    }
+    // if (!data.educationTitle) {
+    //   data.educationTitle = defaultValues.educationTitle;
+    // }
     console.log('data :>> ', data);
   };
 
   const [datePicker, setDatePicker] = useState(false);
-
-  const [date, setDate] = useState(new Date());
 
   function showDatePicker() {
     setDatePicker(true);
   }
 
   function onDateSelected(event: any, value: any) {
-    setDate(value);
-    console.log('aa :>> ');
+    console.log('aa :>> ', value);
     setDatePicker(false);
   }
 
-  console.log('datePicker :>> ', datePicker);
+  console.log('fields :>> ', fields);
 
   return (
     <ScrollView style={styles.container}>
@@ -88,23 +86,28 @@ const EducationInputs: FC<any> = () => {
           name="educationTitle"
           // name={`${fieldArrayName}.${0}.educationTitle`}
           control={control}
-          render={({field: {onChange, value}}) => (
-            <Input
-              style={styles.educationTitle}
-              onChangeText={onChange}
-              value={value || 'Education'}
-              placeholder="Education"
-              w={{
-                base: '75%',
-                md: '100%',
-              }}
-            />
-          )}
+          render={a => {
+            const {field} = a;
+            // console.log('a', a);
+            return (
+              <Input
+                ref={field.ref}
+                style={styles.educationTitle}
+                onChangeText={field.onChange}
+                value={field.value}
+                placeholder="Education"
+                w={{
+                  base: '75%',
+                  md: '100%',
+                }}
+              />
+            );
+          }}
         />
       </Stack>
-
       <Stack space={4} alignItems="center">
         {fields.map((item, i) => {
+          // console.log('item :>> ', item);
           return (
             <Stack key={i} space={4} w="100%" alignItems="center">
               <Pressable
@@ -174,6 +177,30 @@ const EducationInputs: FC<any> = () => {
                   />
                 )}
               />
+
+              {datePicker && (
+                <Controller
+                  name={`${fieldArrayName}.${i}.educationStart`}
+                  control={control}
+                  render={({field: {onChange, value}}) => {
+                    console.log('value :>> ', value);
+                    return (
+                      <RNDateTimePicker
+                        value={value}
+                        mode={'date'}
+                        display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                        is24Hour={true}
+                        onChange={(e, v) => {
+                          console.log('e :>> ', e, v);
+                          onDateSelected(e, v);
+                          onChange(v);
+                        }}
+                      />
+                    );
+                  }}
+                />
+              )}
+              {/* <Text>{item?.educationStart.toString()}</Text> */}
               {!datePicker && (
                 <View style={{margin: 10}}>
                   <Button color="green" onPress={showDatePicker}>
@@ -182,15 +209,14 @@ const EducationInputs: FC<any> = () => {
                 </View>
               )}
 
-              {datePicker && (
+              {/* {datePicker && (
                 <DateTimePicker
-                  value={date}
                   mode={'date'}
                   display={Platform.OS === 'ios' ? 'spinner' : 'default'}
                   is24Hour={true}
                   onChange={onDateSelected}
                 />
-              )}
+              )} */}
             </Stack>
           );
         })}
@@ -198,6 +224,9 @@ const EducationInputs: FC<any> = () => {
       <VStack space={4} alignItems="center">
         <Button variant="subtle" size="xs" onPress={handleSubmit(onSubmit)}>
           Download
+        </Button>
+        <Button variant="subtle" size="xs" onPress={reset}>
+          Reset
         </Button>
       </VStack>
     </ScrollView>

@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
-import {SafeAreaView, FlatList} from 'react-native';
+import {SafeAreaView, FlatList, View} from 'react-native';
 import {Center, Text} from 'native-base';
 
 // project imports
 import CVItem from '../../components/CVItem';
 import EmptyCVItem from '../../components/EmptyCVItem';
 import styles from './styles';
+import SelectLanguage from './SelectLanguage';
 // import CreatePDF from '../../components/makepdf/createpdf';
 
 const data = [
@@ -45,9 +46,12 @@ const ListCV: FC<ListCVProps> = ({navigation}) => {
           }}
           keyExtractor={item => item.id}
           ListHeaderComponent={() => (
-            <Center>
-              <Text height={5}>Total {data?.length} CV</Text>
-            </Center>
+            <View>
+              <SelectLanguage />
+              <Center>
+                <Text height={5}>Total {data?.length} CV</Text>
+              </Center>
+            </View>
           )}
         />
       ) : (

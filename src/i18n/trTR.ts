@@ -1,4 +1,8 @@
 const trTR = {
+  buttonTitle: {
+    edit: 'Duzenle',
+  },
+
   photo: 'photo',
   personal: {
     heading: 'Summary',

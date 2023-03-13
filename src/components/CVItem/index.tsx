@@ -15,6 +15,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MIcons from 'react-native-vector-icons/MaterialIcons';
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {NavigationProp} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
 
 // project imports
 import {APP_ROUTER} from '../../navigation/app-router';
@@ -29,6 +30,7 @@ interface CVItemProps {
 
 const CVItem: FC<CVItemProps> = ({item, navigation}) => {
   const [isOpen, setIsOpen] = useState(false);
+  const {t} = useTranslation();
 
   return (
     <Pressable alignItems="center" style={style.itemContainer}>
@@ -80,7 +82,7 @@ const CVItem: FC<CVItemProps> = ({item, navigation}) => {
                 fontWeight: '700',
                 fontSize: 'md',
               }}>
-              Edit
+              {t('buttonTitle:edit')}
             </Center>
           </Pressable>
           <Pressable
