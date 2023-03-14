@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useWindowDimensions, Animated} from 'react-native';
+import {useWindowDimensions, Animated, View} from 'react-native';
 import {TabView, SceneMap} from 'react-native-tab-view';
 import {Pressable, Box, useColorModeValue} from 'native-base';
 
@@ -9,6 +9,8 @@ import EducationInputs from './components/EducationInputs';
 import WorkExperienceInputs from './components/WorkExperienceInputs';
 import SkillsInputs from './components/SkillsInputs';
 import LanguageInputs from './components/LanguageInputs';
+import {ScreenHeader} from '../../components/ScreenHeaders';
+import styles from './styles';
 
 const renderScene = SceneMap({
   first: () => <PersonalInputs />,
@@ -33,15 +35,18 @@ export default function TabViewExample() {
   ]);
 
   return (
-    <TabView
-      renderTabBar={props => (
-        <RenderTabBar {...props} setIndex={setIndex} index={index} />
-      )}
-      navigationState={{index, routes}}
-      renderScene={renderScene}
-      onIndexChange={setIndex}
-      initialLayout={{width: layout.width}}
-    />
+    <View style={styles.container}>
+      <ScreenHeader />
+      <TabView
+        renderTabBar={props => (
+          <RenderTabBar {...props} setIndex={setIndex} index={index} />
+        )}
+        navigationState={{index, routes}}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={{width: layout.width}}
+      />
+    </View>
   );
 }
 

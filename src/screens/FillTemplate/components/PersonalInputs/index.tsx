@@ -1,18 +1,18 @@
 import React, {FC} from 'react';
-import {View} from 'react-native';
 import {
   Button,
   VStack,
   Icon,
   Input,
   Image,
-  Stack,
+  Center,
   ScrollView,
   FormControl,
-  InputGroup,
+  TextArea,
 } from 'native-base';
 import {Controller, useForm} from 'react-hook-form';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MIcons from 'react-native-vector-icons/MaterialIcons';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 // import * as Yup from 'yup';
 // import {yupResolver} from '@hookform/resolvers/yup';
@@ -24,9 +24,9 @@ const defaultValues = {
   image: '',
   yourName: '',
   yourProfession: '',
-  summaryTitle: '',
+  summaryTitle: 'Summary',
   summaryText: '',
-  contactDetails: 'Contact Details',
+  contactDetails: 'Contact',
   locationText: '',
 
   //
@@ -52,14 +52,12 @@ const PersonalInputs: FC<any> = () => {
   });
 
   const onSubmit = (data: any) => {
-    console.log('rtrtr :>> ');
-    // const data = watch();
     console.log('data :>> ', data);
   };
 
   return (
-    <ScrollView style={{padding: 10}}>
-      <Stack space={4} alignItems="center">
+    <ScrollView style={styles.container}>
+      <Center w="100%" style={{}}>
         <Image
           alt="profile"
           style={styles.image}
@@ -67,19 +65,9 @@ const PersonalInputs: FC<any> = () => {
             uri: 'https://firebasestorage.googleapis.com/v0/b/react-native-ui-kits.appspot.com/o/assets%2Fzurich1.jpg?alt=media&token=8c900be1-b6d6-427d-9739-1f637d8369e6',
           }}
         />
-        <View>
-          <FormControl
-            w="100%"
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              padding: 5,
-              borderWidth: 0.7,
-              borderColor: 'blue',
-              height: 200,
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
+
+        <VStack space={4} mt="5">
+          <FormControl>
             <FormControl.Label>Personal Informations</FormControl.Label>
             <Controller
               name="yourName"
@@ -91,15 +79,20 @@ const PersonalInputs: FC<any> = () => {
                     style={[styles.yourName]}
                     onChangeText={field.onChange}
                     value={field.value}
-                    placeholder="Name"
+                    placeholder="Name Surname"
                     w={{
                       base: inputBase,
                       md: '100%',
                     }}
+                    InputLeftElement={
+                      <Icon as={<Fontisto name="person" />} size={6} ml="1" />
+                    }
                   />
                 );
               }}
             />
+          </FormControl>
+          <FormControl>
             <Controller
               name="yourProfession"
               control={control}
@@ -115,208 +108,235 @@ const PersonalInputs: FC<any> = () => {
                       base: inputBase,
                       md: '100%',
                     }}
+                    InputLeftElement={
+                      <Icon as={<MIcons name="work" />} size={6} ml="1" />
+                    }
                   />
                 );
               }}
             />
           </FormControl>
-          {/* => Summary */}
-        </View>
-        <Controller
-          name="summaryTitle"
-          control={control}
-          render={({field: {onChange, value}}) => {
-            return (
-              <Input
-                style={styles.summaryTitle}
-                onChangeText={onChange}
-                value={value}
-                placeholder="SUMMARY"
-                w={{
-                  base: inputBase,
-                  md: '100%',
-                }}
-              />
-            );
-          }}
-        />
-
-        <Controller
-          name="summaryText"
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <InputGroup>
-              <Input
-                style={styles.summaryText}
-                multiline={true}
-                onChangeText={onChange}
-                value={value}
-                placeholder="Summary"
-                w={{
-                  base: inputBase,
-                  md: '100%',
-                }}
-              />
-            </InputGroup>
-          )}
-        />
-        {/* <= Summary */}
-
-        {/* => Personal Details */}
-        <Controller
-          name="contactDetails"
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <Input
-              style={styles.personalDetails}
-              onChangeText={onChange}
-              value={value}
-              placeholder="Contact Details"
-              w={{
-                base: inputBase,
-                md: '100%',
+          <FormControl>
+            <Controller
+              name="summaryTitle"
+              control={control}
+              render={({field: {onChange, value}}) => {
+                return (
+                  <Input
+                    style={styles.summaryTitle}
+                    onChangeText={onChange}
+                    value={value}
+                    placeholder="SUMMARY"
+                    w={{
+                      base: inputBase,
+                      md: '100%',
+                    }}
+                    InputLeftElement={
+                      <Icon as={<MCIcons name="pen" />} size={6} ml="1" />
+                    }
+                  />
+                );
               }}
             />
-          )}
-        />
-        {/* <= Personal Details */}
-
-        {/* => Contact  */}
-        <Controller
-          name="email"
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <Input
-              style={styles.emailText}
-              onChangeText={onChange}
-              value={value}
-              w={{
-                base: inputBase,
-                md: '100%',
-              }}
-              InputLeftElement={
-                <Icon
-                  as={<MCIcons name="email-outline" />}
-                  size={7}
-                  ml="0"
-                  color="#9a3412"
+          </FormControl>
+          <FormControl w="100%">
+            <Controller
+              name="summaryText"
+              control={control}
+              render={({field: {onChange, value}}) => (
+                <TextArea
+                  autoCompleteType={true}
+                  h={20}
+                  w="80%"
+                  onChangeText={onChange}
+                  value={value}
+                  placeholder="Summary"
                 />
-              }
-              placeholder="Enter your email"
+              )}
             />
-          )}
-        />
-        <Controller
-          name="location"
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <Input
-              style={styles.phoneText}
-              onChangeText={onChange}
-              value={value}
-              w={{
-                base: inputBase,
-                md: '100%',
-              }}
-              InputLeftElement={
-                <Icon
-                  as={<MaterialIcons name="phone" />}
-                  size={7}
-                  ml="0"
-                  color="#dc2626"
+          </FormControl>
+          <FormControl>
+            <Controller
+              name="contactDetails"
+              control={control}
+              render={({field: {onChange, value}}) => (
+                <Input
+                  style={styles.personalDetails}
+                  onChangeText={onChange}
+                  value={value}
+                  placeholder="Contact Details"
+                  w={{
+                    base: inputBase,
+                    md: '100%',
+                  }}
+                  InputLeftElement={
+                    <Icon
+                      as={<MCIcons name="card-account-details-outline" />}
+                      size={7}
+                      ml="1"
+                    />
+                  }
                 />
-              }
-              placeholder="Enter your phone number"
+              )}
             />
-          )}
-        />
-        <Controller
-          name="locationText"
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <Input
-              style={styles.phoneText}
-              onChangeText={onChange}
-              value={value}
-              w={{
-                base: inputBase,
-                md: '100%',
-              }}
-              InputLeftElement={
-                <Icon
-                  as={<MaterialIcons name="location-pin" />}
-                  size={7}
-                  color="#16a34a"
+          </FormControl>
+          <FormControl>
+            <Controller
+              name="email"
+              control={control}
+              render={({field: {onChange, value}}) => (
+                <Input
+                  style={styles.emailText}
+                  onChangeText={onChange}
+                  value={value}
+                  w={{
+                    base: inputBase,
+                    md: '100%',
+                  }}
+                  InputLeftElement={
+                    <Icon
+                      as={<MCIcons name="email-outline" />}
+                      size={7}
+                      ml="1"
+                      color="#9a3412"
+                    />
+                  }
+                  placeholder="Enter your email"
                 />
-              }
-              placeholder="Enter your location"
+              )}
             />
-          )}
-        />
-        <Controller
-          name="website"
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <Input
-              style={styles.phoneText}
-              onChangeText={onChange}
-              value={value}
-              w={{
-                base: inputBase,
-                md: '100%',
-              }}
-              InputLeftElement={
-                <Icon as={<MCIcons name="web" />} size={7} color="#047857" />
-              }
-              placeholder="Website"
-            />
-          )}
-        />
-        <Controller
-          name="linkedin"
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <Input
-              style={styles.phoneText}
-              onChangeText={onChange}
-              value={value}
-              w={{
-                base: inputBase,
-                md: '100%',
-              }}
-              InputLeftElement={
-                <Icon
-                  as={<MCIcons name="linkedin" />}
-                  size={7}
-                  color="#0072b1"
+          </FormControl>
+          <FormControl>
+            <Controller
+              name="location"
+              control={control}
+              render={({field: {onChange, value}}) => (
+                <Input
+                  style={styles.phoneText}
+                  onChangeText={onChange}
+                  value={value}
+                  w={{
+                    base: inputBase,
+                    md: '100%',
+                  }}
+                  InputLeftElement={
+                    <Icon
+                      as={<MIcons name="phone" />}
+                      size={7}
+                      ml="1"
+                      color="#dc2626"
+                    />
+                  }
+                  placeholder="Enter your phone number"
                 />
-              }
-              placeholder="Linkedin"
+              )}
             />
-          )}
-        />
-        <Controller
-          name="github"
-          control={control}
-          render={({field: {onChange, value}}) => (
-            <Input
-              style={styles.phoneText}
-              onChangeText={onChange}
-              value={value}
-              w={{
-                base: inputBase,
-                md: '100%',
-              }}
-              InputLeftElement={
-                <Icon as={<MCIcons name="github" />} size={7} color="black" />
-              }
-              placeholder="Github"
+          </FormControl>
+          <FormControl>
+            <Controller
+              name="locationText"
+              control={control}
+              render={({field: {onChange, value}}) => (
+                <Input
+                  style={styles.phoneText}
+                  onChangeText={onChange}
+                  value={value}
+                  w={{
+                    base: inputBase,
+                    md: '100%',
+                  }}
+                  InputLeftElement={
+                    <Icon
+                      as={<MIcons name="location-pin" />}
+                      size={7}
+                      color="#16a34a"
+                    />
+                  }
+                  placeholder="Enter your location"
+                />
+              )}
             />
-          )}
-        />
-        {/* <= Contact */}
-      </Stack>
+          </FormControl>
+        </VStack>
 
+        <VStack space={2} mt="5">
+          <FormControl>
+            <Controller
+              name="website"
+              control={control}
+              render={({field: {onChange, value}}) => (
+                <Input
+                  style={styles.phoneText}
+                  onChangeText={onChange}
+                  value={value}
+                  w={{
+                    base: inputBase,
+                    md: '100%',
+                  }}
+                  InputLeftElement={
+                    <Icon
+                      as={<MCIcons name="web" />}
+                      size={7}
+                      color="#047857"
+                    />
+                  }
+                  placeholder="Website"
+                />
+              )}
+            />
+          </FormControl>
+          <FormControl>
+            <Controller
+              name="linkedin"
+              control={control}
+              render={({field: {onChange, value}}) => (
+                <Input
+                  style={styles.phoneText}
+                  onChangeText={onChange}
+                  value={value}
+                  w={{
+                    base: inputBase,
+                    md: '100%',
+                  }}
+                  InputLeftElement={
+                    <Icon
+                      as={<MCIcons name="linkedin" />}
+                      size={7}
+                      color="#0072b1"
+                    />
+                  }
+                  placeholder="Linkedin"
+                />
+              )}
+            />
+          </FormControl>
+          <FormControl>
+            <Controller
+              name="github"
+              control={control}
+              render={({field: {onChange, value}}) => (
+                <Input
+                  style={styles.phoneText}
+                  onChangeText={onChange}
+                  value={value}
+                  w={{
+                    base: inputBase,
+                    md: '100%',
+                  }}
+                  InputLeftElement={
+                    <Icon
+                      as={<MCIcons name="github" />}
+                      size={7}
+                      color="black"
+                    />
+                  }
+                  placeholder="Github"
+                />
+              )}
+            />
+          </FormControl>
+        </VStack>
+      </Center>
       <VStack space={4} alignItems="center">
         <Button variant="subtle" size="xs" onPress={handleSubmit(onSubmit)}>
           Download

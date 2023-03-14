@@ -6,6 +6,11 @@ const SIZE = 70;
 // const fontSizeMD = 14;
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fffffd',
+  },
+  personalInfoContainer: {},
+
   yourName: {},
   yourProfession: {},
   image: {
@@ -15,10 +20,7 @@ const styles = StyleSheet.create({
     borderRadius: SIZE / 2,
   },
   summaryTitle: {},
-  summaryText: {
-    width: 100,
-    height: 100,
-  },
+  summaryText: {},
   personalDetails: {},
   locationTitle: {},
   locationText: {},
