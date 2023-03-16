@@ -14,7 +14,7 @@ import FillTemplate from '../screens/FillTemplate';
 import ListCV from '../screens/ListCV';
 import SeePDF from '../screens/SeePDF';
 import TemplateCV from '../screens/TemplateCV';
-import {HeaderMidTitle, HeaderRightTitle} from '../components/ScreenHeaders';
+// import {HeaderMidTitle, HeaderRightTitle} from '../components/ScreenHeaders';
 import {APP_ROUTER} from './app-router';
 
 const Tab = createBottomTabNavigator();
@@ -33,24 +33,16 @@ const TabNavigator = () => {
       <Tab.Screen
         name={APP_ROUTER.SCREEN.listcv.path}
         component={ListCV}
-        options={() => ({
-          headerTitle: () => (
-            <HeaderMidTitle title={APP_ROUTER.SCREEN.listcv.tabBarLabel} />
-          ),
-        })}
+        options={{
+          headerShown: false,
+        }}
       />
       <Tab.Screen
         name={APP_ROUTER.SCREEN.docv.path}
         component={TemplateCV}
-        options={() => ({
-          headerTitle: () => (
-            <HeaderMidTitle title={APP_ROUTER.SCREEN.docv.tabBarLabel} />
-          ),
-          headerRight: () => <HeaderRightTitle icon={'settings'} />,
-          tabBarIcon: () => (
-            <MaterialIcons name="create" size={30} color="#6495ED" />
-          ),
-        })}
+        options={{
+          headerShown: false,
+        }}
       />
     </Tab.Navigator>
   );
@@ -147,11 +139,9 @@ const AppNavigator = () => {
         <Stack.Screen
           name={APP_ROUTER.SCREEN.seepdf.path}
           component={SeePDF}
-          options={() => ({
-            headerTitle: () => (
-              <HeaderMidTitle title={APP_ROUTER.SCREEN.seepdf.tabBarLabel} />
-            ),
-          })}
+          options={{
+            headerShown: false,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -13,7 +13,7 @@ i18n.use(initReactI18next).init({
   lng: 'tr',
   compatibilityJSON: 'v3',
   fallbackLng: ['tr', 'en'],
-  debug: true,
+  debug: false,
   interpolation: {
     escapeValue: false, // not needed for react as it escapes by default
   },

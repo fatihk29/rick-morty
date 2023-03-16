@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useWindowDimensions, Animated, View} from 'react-native';
 import {TabView, SceneMap} from 'react-native-tab-view';
 import {Pressable, Box, useColorModeValue} from 'native-base';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // project imports
 import PersonalInputs from './components/PersonalInputs';
@@ -11,6 +12,7 @@ import SkillsInputs from './components/SkillsInputs';
 import LanguageInputs from './components/LanguageInputs';
 import {ScreenHeader} from '../../components/ScreenHeaders';
 import styles from './styles';
+import {APP_ROUTER} from '../../navigation/app-router';
 
 const renderScene = SceneMap({
   first: () => <PersonalInputs />,
@@ -36,7 +38,13 @@ export default function TabViewExample() {
 
   return (
     <View style={styles.container}>
-      <ScreenHeader />
+      <ScreenHeader
+        title={APP_ROUTER.SCREEN.fillTemplate.tabBarLabel}
+        iconAs={MaterialIcons}
+        iconName="search"
+        iconAs2={MaterialIcons}
+        iconName2="more-vert"
+      />
       <TabView
         renderTabBar={props => (
           <RenderTabBar {...props} setIndex={setIndex} index={index} />
