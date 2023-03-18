@@ -41,7 +41,6 @@ interface ListCVProps {
 const ListCV: FC<ListCVProps> = ({navigation}) => {
   const [isLangOpen, setIsLangOpen] = useState(false);
 
-  console.log('isLangOpen :>> ', isLangOpen);
   return (
     <SafeAreaView style={styles.container}>
       <ScreenHeader

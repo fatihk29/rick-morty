@@ -88,7 +88,6 @@ const EducationInputs: FC<any> = () => {
           control={control}
           render={a => {
             const {field} = a;
-            // console.log('a', a);
             return (
               <Input
                 ref={field.ref}
