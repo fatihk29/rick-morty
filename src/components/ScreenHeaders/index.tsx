@@ -1,6 +1,13 @@
 import React, {FC} from 'react';
-import {HStack, IconButton, Text, Box, StatusBar} from 'native-base';
-import {Icon} from 'native-base';
+import {
+  HStack,
+  IconButton,
+  Text,
+  Box,
+  StatusBar,
+  View,
+  Icon,
+} from 'native-base';
 
 // project imports
 // import style from './styles';
@@ -25,13 +32,13 @@ const ScreenHeader: FC<IScreenHeader> = ({
   onPress2,
 }) => {
   return (
-    <>
+    <View>
       <StatusBar barStyle="light-content" />
-      <Box safeAreaTop bg="#6495ED" />
+      <Box bg="#6495ED" />
       <HStack
         bg="#6495ED"
         px="1"
-        py="3"
+        py="1"
         justifyContent="space-between"
         alignItems="center"
         w="100%">
@@ -55,7 +62,7 @@ const ScreenHeader: FC<IScreenHeader> = ({
           )}
         </HStack>
       </HStack>
-    </>
+    </View>
   );
 };
 

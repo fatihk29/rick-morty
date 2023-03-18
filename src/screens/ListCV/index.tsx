@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react';
-import {SafeAreaView, FlatList, View} from 'react-native';
-import {Center, Text} from 'native-base';
+import {SafeAreaView} from 'react-native';
+import {Center, Text, View, FlatList} from 'native-base';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -8,7 +8,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import CVItem from '../../components/CVItem';
 import EmptyCVItem from '../../components/EmptyCVItem';
 import styles from './styles';
-import SelectLanguage from './SelectLanguage';
 import {ScreenHeader} from '../../components/ScreenHeaders';
 import {APP_ROUTER} from '../../navigation/app-router';
 import LanguageModal from '../Modal/LanguageModal';

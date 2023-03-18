@@ -8,13 +8,11 @@ import FAIcons from 'react-native-vector-icons/FontAwesome';
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // project imports
-// SCREENS
 import CreateTemplate from '../screens/CreateTemplate';
 import FillTemplate from '../screens/FillTemplate';
 import ListCV from '../screens/ListCV';
 import SeePDF from '../screens/SeePDF';
 import TemplateCV from '../screens/TemplateCV';
-// import {HeaderMidTitle, HeaderRightTitle} from '../components/ScreenHeaders';
 import {APP_ROUTER} from './app-router';
 
 const Tab = createBottomTabNavigator();
@@ -24,15 +22,15 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator tabBar={props => <MyTabBar {...props} />}>
       <Tab.Screen
-        name={APP_ROUTER.SCREEN.fillTemplate.path}
-        component={FillTemplate}
+        name={APP_ROUTER.SCREEN.listcv.path}
+        component={ListCV}
         options={{
           headerShown: false,
         }}
       />
       <Tab.Screen
-        name={APP_ROUTER.SCREEN.listcv.path}
-        component={ListCV}
+        name={APP_ROUTER.SCREEN.fillTemplate.path}
+        component={FillTemplate}
         options={{
           headerShown: false,
         }}
@@ -49,14 +47,14 @@ const TabNavigator = () => {
 };
 
 const MyTabBar: FC<any> = ({navigation}) => {
-  const [selected, setSelected] = React.useState(1);
+  const [selected, setSelected] = React.useState(0);
 
   return (
     <Box bg="white" safeAreaTop width="100%" alignSelf="center">
       <HStack bg="indigo.600" alignItems="center" safeAreaBottom shadow={6}>
         <Pressable
           opacity={selected === 0 ? 1 : 0.5}
-          py="3"
+          py="1"
           flex={1}
           onPress={() => {
             setSelected(0);
@@ -64,7 +62,7 @@ const MyTabBar: FC<any> = ({navigation}) => {
           }}>
           <Center>
             <Icon
-              mb="1"
+              mb="0"
               as={
                 <MCIcons
                   name={
@@ -84,7 +82,7 @@ const MyTabBar: FC<any> = ({navigation}) => {
         </Pressable>
         <Pressable
           opacity={selected === 1 ? 1 : 0.5}
-          py="2"
+          py="1"
           flex={1}
           onPress={() => {
             setSelected(1);
@@ -92,7 +90,7 @@ const MyTabBar: FC<any> = ({navigation}) => {
           }}>
           <Center>
             <Icon
-              mb="1"
+              mb="0"
               as={<MaterialIcons name="create" />}
               color="white"
               size="md"
@@ -104,14 +102,14 @@ const MyTabBar: FC<any> = ({navigation}) => {
         </Pressable>
         <Pressable
           opacity={selected === 2 ? 1 : 0.5}
-          py="2"
+          py="1"
           flex={1}
           onPress={() => {
             setSelected(2);
             navigation.navigate(APP_ROUTER.SCREEN.docv.path);
           }}>
           <Center>
-            <Icon mb="1" as={<FAIcons name="cogs" />} color="white" size="md" />
+            <Icon mb="0" as={<FAIcons name="cogs" />} color="white" size="md" />
             <Text color="white" fontSize="12">
               {APP_ROUTER.SCREEN.docv.tabBarLabel}
             </Text>

@@ -42,6 +42,9 @@ export default function TabViewExample() {
         title={APP_ROUTER.SCREEN.fillTemplate.tabBarLabel}
         iconAs={MaterialIcons}
         iconName="search"
+        onPress={() => {
+          console.log('a');
+        }}
         iconAs2={MaterialIcons}
         iconName2="more-vert"
       />
